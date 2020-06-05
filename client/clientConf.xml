@@ -1,0 +1,12 @@
+<ClientConf>
+    <exportIp>192.168.1.151</exportIp>
+    <log>./logs/client.log</log>
+    <maxSize>5</maxSize>                        <!--max size of log (MB)-->
+    <maxBackups>5</maxBackups>                  <!--max number of old log-->
+    <maxAge>10</maxAge>                         <!--max days of old log retained-->
+    <compress>false</compress>
+    <level>debug</level>
+    <etcd>192.168.0.100:2379</etcd>             <!--etcd endpoints-->
+    <etcd>192.168.0.110:2379</etcd>
+    <mongo>192.168.1.151:27017</mongo>          <!--mongoDB-->
+</ClientConf>

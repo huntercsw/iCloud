@@ -1,0 +1,16 @@
+<iCloudConf>
+    <ip>0.0.0.0</ip>    <!--ip address listen on -->
+    <port>7890</port>   <!--port listen on -->
+    <log>
+        <webLogName>./logs/webServer.log</webLogName>     <!--log name of gin framework-->
+        <name>./logs/iCloud.log</name>            <!--log name of project-->
+        <maxSize>5</maxSize>                        <!--max size of log (MB)-->
+        <maxBackups>5</maxBackups>                  <!--max number of old log-->
+        <maxAge>10</maxAge>                         <!--max days of old log retained-->
+        <compress>false</compress>
+        <level>debug</level>
+    </log>
+    <etcd>192.168.0.100:2379</etcd>             <!--etcd endpoints-->
+    <etcd>192.168.0.110:2379</etcd>
+    <mongo>192.168.1.151:27017</mongo>          <!--mongoDB-->
+</iCloudConf>
