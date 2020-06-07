@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
+	github.com/coreos/bbolt v1.3.4 // indirect
 	github.com/coreos/etcd v3.3.22+incompatible
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf // indirect
@@ -21,6 +22,7 @@ require (
 	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.14.6 // indirect
 	github.com/jonboulle/clockwork v0.1.0 // indirect
+	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/prometheus/client_golang v1.6.0 // indirect
 	github.com/shirou/gopsutil v2.20.5+incompatible
@@ -28,8 +30,9 @@ require (
 	github.com/tmc/grpc-websocket-proxy v0.0.0-20200427203606-3cfed13b9966 // indirect
 	github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2 // indirect
 	go.etcd.io/bbolt v1.3.4 // indirect
-	go.mongodb.org/mongo-driver v1.3.4
 	go.uber.org/zap v1.15.0
+	golang.org/x/crypto v0.0.0-20190530122614-20be4c3c3ed5 // indirect
+	golang.org/x/text v0.3.2 // indirect
 	golang.org/x/time v0.0.0-20200416051211-89c76fbcd5d1 // indirect
 	google.golang.org/genproto v0.0.0-20200604104852-0b0486081ffb // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect

@@ -1,4 +1,4 @@
-package docker
+package apps
 
 import (
 	"context"
@@ -7,11 +7,72 @@ import (
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/client"
 	"github.com/docker/go-connections/nat"
+	"iCloud/log"
 	"time"
 )
 
 const RemoteHost = "tcp://192.168.0.100:7777"
 
+var (
+	DockerApiCliMap = make(map[string]*client.Client)
+)
+
+func DockerApiCliPoolAdd(ip string) (err error) {
+	var (
+		cli *client.Client
+		m = "apps.docker.DockerApiCliAdd()"
+	)
+	if _, exist := DockerApiCliMap[ip]; exist {
+		return
+	}
+
+	// host: it need remote docker server open remote API, edit configuration "/usr/lib/systemd/system/docker.service"
+	if cli, err = client.NewClient("tcp://" + ip, client.DefaultVersion, nil, nil); err != nil {
+		log.Logger.Error("%s error, create docker api client to %s error: %v", m, ip, err)
+		return
+	}
+
+	DockerApiCliMap[ip] = cli
+	return
+}
+
+func DockerApiCliMapDelete(ip string) {
+	if _, exist := DockerApiCliMap[ip]; exist {
+		DockerApiCliMap[ip].Close()
+		delete(DockerApiCliMap, ip)
+	}
+}
+
+func DockerApiCliMapReconnect(ip string) (err error) {
+	var (
+		cli *client.Client
+	)
+	if _, exist := DockerApiCliMap[ip]; exist {
+		DockerApiCliMap[ip].Close()
+	}
+
+	if cli, err = client.NewClient("tcp://" + ip, client.DefaultVersion, nil, nil); err != nil {
+		log.Logger.Error("%s error, create docker api client to %s error: %v", m, ip, err)
+		return
+	}
+
+	DockerApiCliMap[ip] = cli
+	return
+}
+
+func GetDockerApiClient(ip string) (cli *client.Client) {
+	if _, exist := DockerApiCliMap[ip]; !exist {
+		return
+	}
+
+	return DockerApiCliMap[ip]
+}
+
+func DockerApiCliPoolClose() {
+	for _, cli := range DockerApiCliMap {
+		cli.Close()
+	}
+}
 
 func RemoteDockerApiInit() (cli *client.Client, ok bool){
 	var (
@@ -25,13 +86,13 @@ func RemoteDockerApiInit() (cli *client.Client, ok bool){
 	return cli, true
 }
 
-func LsRunningContainer(cli *client.Client) {
+func LsContainers(cli *client.Client) {
 	var (
 		containers []types.Container
 		err        error
 	)
 
-	if containers, err = cli.ContainerList(context.Background(), types.ContainerListOptions{}); err != nil {
+	if containers, err = cli.ContainerList(context.Background(), types.ContainerListOptions{All:true}); err != nil {
 		fmt.Println("get running containers error:", err)
 		return
 	}
@@ -40,7 +101,7 @@ func LsRunningContainer(cli *client.Client) {
 	}
 }
 
-func CreateContainer(cli *client.Client) (containerId string, ok bool) {
+func CreateRunContainer(cli *client.Client) (containerId string, ok bool) {
 	var (
 		exportPortMap = make(nat.PortSet, 10)
 		exportPort    nat.Port
@@ -106,3 +167,4 @@ func RemoveContainer(containerID string, cli *client.Client) (string, error) {
 	fmt.Println(err)
 	return containerID, err
 }
+

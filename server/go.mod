@@ -34,7 +34,7 @@ require (
 	github.com/tmc/grpc-websocket-proxy v0.0.0-20200427203606-3cfed13b9966 // indirect
 	github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2 // indirect
 	go.etcd.io/bbolt v1.3.4 // indirect
-	go.mongodb.org/mongo-driver v1.3.4 // indirect
+	go.mongodb.org/mongo-driver v1.3.4
 	go.uber.org/zap v1.15.0
 	golang.org/x/time v0.0.0-20200416051211-89c76fbcd5d1 // indirect
 	google.golang.org/genproto v0.0.0-20200604104852-0b0486081ffb // indirect
