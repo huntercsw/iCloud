@@ -45,6 +45,7 @@ func DockerApiCliMapDelete(ip string) {
 
 func DockerApiCliMapReconnect(ip string) (err error) {
 	var (
+		m = "apps.docker.DockerApiCliMapReconnect()"
 		cli *client.Client
 	)
 	if _, exist := DockerApiCliMap[ip]; exist {
