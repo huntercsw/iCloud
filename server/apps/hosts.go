@@ -3,7 +3,6 @@ package apps
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"github.com/coreos/etcd/clientv3"
 	"github.com/gin-gonic/gin"
 	"iCloud/commons"
@@ -35,13 +34,11 @@ func hostListHandler(ctx context.Context, wg *sync.WaitGroup, rsp gin.H) {
 		err    error
 		m      = "apps.hosts.hostListHandler()"
 		rspCh  = make(chan struct{}, 1)
-		host = new(commons.Host)
 		data = make([]*commons.Host, 0)
 	)
 	defer func() {
 		close(rspCh)
 		wg.Done()
-		fmt.Println("*****************************************")
 	}()
 
 	go func() {
@@ -51,9 +48,11 @@ func hostListHandler(ctx context.Context, wg *sync.WaitGroup, rsp gin.H) {
 		} else {
 			rsp["ErrorCode"] = 0
 			for _, v := range getRsp.Kvs {
+				host := new(commons.Host)
 				if err = json.Unmarshal(v.Value, host); err != nil {
-					log.Logger.Error("%s error, %s json unmarshal error: %v", m, v.Key, err)
+					log.Logger.Errorf("%s error, %s json unmarshal error: %v", m, v.Key, err)
 				} else {
+					host.Heartbeat = time.Now().Unix() - host.Heartbeat
 					data = append(data, host)
 				}
 			}

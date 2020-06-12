@@ -17,7 +17,6 @@ import (
 func init() {
 	var (
 		err error
-		ok bool
 	)
 	if err = conf.ICloudConfInit(); err != nil {
 		fmt.Println("load configuration error:", err)
@@ -34,16 +33,14 @@ func init() {
 		log.Logger.Error("etcd init error: %v", err)
 	}
 
-	if commons.DockerApiCli, ok = apps.RemoteDockerApiInit(); !ok {
-		os.Exit(1)
-	}
+	apps.DockerApiCliMapInit()
 }
 
 func main() {
 	log.Logger.Info("iCloud server started")
 
 	defer func() {
-		commons.DockerApiCli.Close()
+		apps.DockerApiCliPoolClose()
 		log.Logger.Info("iCloud server closed")
 		log.Logger.Sync()
 	}()

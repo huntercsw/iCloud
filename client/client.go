@@ -31,10 +31,11 @@ type Host struct {
 	HostName  string `json:"hostName"`
 	OS        string `json:"os"`
 	Ip        string `json:"ip"`
+	ApiPort   string `json:"apiPort"`
 	CpuCores  int    `json:"cpuCores"`
 	CpuUsage  string `json:"cpuUsage"`
 	TotalMem  string `json:"totalMem"`
-	FreeMem   string `json:"freeMen"`
+	FreeMem   string `json:"freeMem"`
 	TotalDisk int    `json:"totalDisk"`
 	FreeDisk  int    `json:"freeDisk"`
 	Heartbeat int64  `json:"heartbeat"` // current  timestamp
@@ -83,18 +84,27 @@ func (h *Host) Refresh() {
 		Logger.Errorf("%s error, %s[%s] get mem error: %v", m, h.HostName, h.Ip, err)
 		return
 	}
-	if diskInfo, err = disk.Partitions(true); err != nil {
-		Logger.Errorf("m error, %s[%s] get disk error: %v", m, h.HostName, h.Ip, err)
-		return
-	}
 
 	h.HostName, h.OS = hostInfo.Hostname, hostInfo.OS
-	h.Ip = Conf.ExportIp
+	h.Ip, h.ApiPort = Conf.ExportIp, Conf.ApiPort
 	h.CpuCores = runtime.NumCPU()
 	h.CpuUsage = strconv.FormatFloat(cpuTimeInfo[0], 'f', 2, 64)
 	h.TotalMem = strconv.FormatFloat(float64(memInfo.Total)/float64(GB), 'f', 2, 64)
 	h.FreeMem = strconv.FormatFloat(float64(memInfo.Available)/float64(GB), 'f', 2, 64)
-	h.sumDisk(&diskInfo)
+
+	if h.OS == "windows" {
+		if diskInfo, err = disk.Partitions(true); err != nil {
+			Logger.Errorf("%s error, %s[%s] get disk error: %v", m, h.HostName, h.Ip, err)
+			return
+		}
+		h.sumDisk(&diskInfo)
+	} else {
+		if diskStat, err1 := disk.Usage("/"); err1 != nil {
+			Logger.Error("%s error, %s[%s] get disk '/' error: %v", m, h.HostName, h.Ip, err)
+		} else {
+			h.TotalDisk, h.FreeDisk = int(diskStat.Total/GB), int(diskStat.Free/GB)
+		}
+	}
 	h.Heartbeat = time.Now().Unix()
 }
 
@@ -121,6 +131,7 @@ func (h *Host) empty() {
 	h.HostName = ""
 	h.OS = ""
 	h.Ip = ""
+	h.ApiPort = ""
 	h.CpuCores = 0
 	h.CpuUsage = ""
 	h.TotalMem = ""
@@ -165,7 +176,7 @@ func main() {
 	go func() {
 		for {
 			hostRegister()
-			time.Sleep(time.Second * 2)
+			time.Sleep(time.Second * 3)
 		}
 	}()
 

@@ -1,5 +1,6 @@
 <ClientConf>
     <exportIp>192.168.1.151</exportIp>
+    <apiPort>12345</apiPort>
     <log>./logs/client.log</log>
     <maxSize>5</maxSize>                        <!--max size of log (MB)-->
     <maxBackups>5</maxBackups>                  <!--max number of old log-->

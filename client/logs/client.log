@@ -1,3 +1,14 @@
 2020-06-05T20:18:46.977+0800	INFO	client/client.go:152	iCloud Client started
 2020-06-05T20:20:19.048+0800	INFO	client/client.go:152	iCloud Client started
 2020-06-05T20:21:58.589+0800	INFO	client/client.go:152	iCloud Client started
+2020-06-08T12:17:54.188+0800	INFO	client/client.go:152	iCloud Client started
+2020-06-08T13:00:13.681+0800	INFO	client/client.go:152	iCloud Client started
+2020-06-08T13:01:13.720+0800	INFO	client/client.go:152	iCloud Client started
+2020-06-08T13:49:47.038+0800	INFO	client/client.go:161	iCloud Client started
+2020-06-08T15:33:18.662+0800	INFO	client/client.go:163	iCloud Client started
+2020-06-08T15:34:01.364+0800	INFO	client/client.go:163	iCloud Client started
+2020-06-08T15:34:20.612+0800	INFO	client/client.go:163	iCloud Client started
+2020-06-08T15:36:48.455+0800	INFO	client/client.go:163	iCloud Client started
+2020-06-08T16:51:44.694+0800	ERROR	client/client.go:158	client.HostRegister() error, 192.168.1.151 put to etcd error: etcdserver: request timed out
+2020-06-09T12:05:08.382+0800	INFO	client/client.go:163	iCloud Client started
+2020-06-10T11:59:50.103+0800	INFO	client/client.go:163	iCloud Client started

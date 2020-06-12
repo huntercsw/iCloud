@@ -4,8 +4,33 @@
  - using env:	export GIN_MODE=release
  - using code:	gin.SetMode(gin.ReleaseMode)
 
-[GIN-debug] GET    /hosts/list               --> iCloud/apps.HostList (3 handlers)
-[GIN-debug] GET    /containers/list          --> github.com/gin-gonic/gin.RecoveryWithWriter.func1 (2 handlers)
-[GIN-debug] POST   /containers/add           --> github.com/gin-gonic/gin.RecoveryWithWriter.func1 (2 handlers)
+[GIN-debug] GET    /iCloudApi/hosts/list     --> iCloud/apps.HostList (3 handlers)
+[GIN-debug] GET    /iCloudApi/containers/list --> iCloud/apps.ContainerList (3 handlers)
+[GIN-debug] GET    /iCloudApi/containers/lsImage --> iCloud/apps.ImageList (3 handlers)
+[GIN-debug] POST   /iCloudApi/containers/createAndRun/:ip/:port --> iCloud/apps.ContainerCreate (3 handlers)
+[GIN-debug] PUT    /iCloudApi/containers/start/:id/:ip/:port --> iCloud/apps.ContainerStart (3 handlers)
+[GIN-debug] PUT    /iCloudApi/containers/stop/:id/:ip/:port --> iCloud/apps.ContainerStop (3 handlers)
+[GIN-debug] DELETE /iCloudApi/containers/remove/:id/:ip/:port --> iCloud/apps.ContainerRemove (3 handlers)
+[GIN-debug] GET    /iCloudApi/containers/detail/:id/:ip/:port --> iCloud/apps.ContainerDetail (3 handlers)
 [GIN-debug] Listening and serving HTTP on 0.0.0.0:7890
-[GIN] 2020/06/06 - 18:37:00 | 200 |    421.0241ms |       127.0.0.1 | GET      "/hosts/list"
+[GIN] 2020/06/12 - 19:04:15 | 200 |      5.0088ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
+[GIN-debug] redirecting request 307: /iCloudApi/containers/remove/feda7cfa8a2bacc403dbf96aa99734b6da97bb45c035e4216f8ee6ead33b58f4/192.168.0.100/7777 --> /iCloudApi/containers/remove/feda7cfa8a2bacc403dbf96aa99734b6da97bb45c035e4216f8ee6ead33b58f4/192.168.0.100/7777
+[GIN] 2020/06/12 - 19:04:18 | 200 |     158.634ms |   192.168.1.151 | DELETE   "/iCloudApi/containers/remove/feda7cfa8a2bacc403dbf96aa99734b6da97bb45c035e4216f8ee6ead33b58f4/192.168.0.100/7777"
+[GIN] 2020/06/12 - 19:04:18 | 200 |      1.9884ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
+[GIN] 2020/06/12 - 19:04:40 | 200 |      1.9938ms |   192.168.1.151 | GET      "/iCloudApi/containers/lsImage?ip=192.168.0.100&port=7777"
+[GIN] 2020/06/12 - 19:05:38 | 200 |      19.947ms |   192.168.1.151 | POST     "/iCloudApi/containers/createAndRun/192.168.0.100/7777"
+[GIN] 2020/06/12 - 19:05:47 | 200 |      2.0145ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
+[GIN-debug] redirecting request 307: /iCloudApi/containers/start/8d62eecd3d79474ebb5683d9dc9770d9ee871d3cbfbde21fa2cfdf531b2960c6/192.168.0.100/7777 --> /iCloudApi/containers/start/8d62eecd3d79474ebb5683d9dc9770d9ee871d3cbfbde21fa2cfdf531b2960c6/192.168.0.100/7777
+[GIN] 2020/06/12 - 19:05:51 | 200 |    529.2194ms |   192.168.1.151 | PUT      "/iCloudApi/containers/start/8d62eecd3d79474ebb5683d9dc9770d9ee871d3cbfbde21fa2cfdf531b2960c6/192.168.0.100/7777"
+[GIN] 2020/06/12 - 19:05:51 | 200 |      2.9909ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
+[GIN-debug] redirecting request 301: /iCloudApi/containers/detail/8d62eecd3d79474ebb5683d9dc9770d9ee871d3cbfbde21fa2cfdf531b2960c6/192.168.0.100/7777 --> /iCloudApi/containers/detail/8d62eecd3d79474ebb5683d9dc9770d9ee871d3cbfbde21fa2cfdf531b2960c6/192.168.0.100/7777
+[GIN] 2020/06/12 - 19:05:55 | 200 |      1.8625ms |   192.168.1.151 | GET      "/iCloudApi/containers/detail/8d62eecd3d79474ebb5683d9dc9770d9ee871d3cbfbde21fa2cfdf531b2960c6/192.168.0.100/7777"
+[GIN] 2020/06/12 - 19:07:28 | 200 |      1.9917ms |   192.168.1.151 | GET      "/iCloudApi/hosts/list"
+[GIN] 2020/06/12 - 19:07:31 | 200 |      2.9502ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
+[GIN] 2020/06/12 - 19:08:12 | 200 |      2.0289ms |   192.168.1.151 | GET      "/iCloudApi/containers/detail/8d62eecd3d79474ebb5683d9dc9770d9ee871d3cbfbde21fa2cfdf531b2960c6/192.168.0.100/7777"
+[GIN] 2020/06/12 - 19:25:38 | 200 |      2.0243ms |   192.168.1.151 | GET      "/iCloudApi/containers/lsImage?ip=192.168.0.100&port=7777"
+[GIN] 2020/06/12 - 19:26:20 | 200 |      3.0194ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
+[GIN] 2020/06/12 - 19:26:36 | 200 |      2.9954ms |   192.168.1.151 | GET      "/iCloudApi/containers/lsImage?ip=192.168.0.100&port=7777"
+[GIN] 2020/06/12 - 19:28:07 | 200 |       996.4µs |   192.168.1.151 | GET      "/iCloudApi/hosts/list"
+[GIN] 2020/06/12 - 19:28:30 | 200 |      1.9969ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
+[GIN] 2020/06/12 - 19:37:26 | 200 |      4.9862ms |   192.168.1.151 | GET      "/iCloudApi/containers/detail/8a37e5964bce67ff3df9076c4a95126417a07efda6285ecbe15372bf183f3199/192.168.0.100/7777"

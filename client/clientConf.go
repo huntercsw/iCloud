@@ -10,8 +10,9 @@ const CONF_NAME = "./clientConf.xml"
 
 type ClientConf struct {
 	ExportIp   string   `xml:"exportIp"`
-	Etcd       []string `xml:"etcd"`  // etcd ip:port
-	Mongo      string   `xml:"mongo"` // mondoDB
+	ApiPort    string   `xml:"apiPort"` // docker remote api port
+	Etcd       []string `xml:"etcd"`    // etcd ip:port
+	Mongo      string   `xml:"mongo"`   // mondoDB
 	Log        string   `xml:"log"`
 	Level      string   `xml:"level"`
 	MaxSize    int      `xml:"maxSize"`    // max size of log (MB)
