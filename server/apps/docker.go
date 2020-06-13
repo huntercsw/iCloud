@@ -14,6 +14,7 @@ import (
 	"io"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 const RemoteDockerPort = ":7777"
@@ -528,7 +529,7 @@ func ContainerLogs(ctx *gin.Context) {
 	}
 
 	buf.ReadFrom(containerLog)
-	rsp["ErrorCode"], rsp["Data"] = 0, buf.String()
+	rsp["ErrorCode"], rsp["Data"] = 0, strings.Split(buf.String(), "\r\n")
 
 RESPONSE:
 	ctx.JSON(http.StatusOK, rsp)
