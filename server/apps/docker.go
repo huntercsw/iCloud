@@ -1,9 +1,9 @@
 package apps
 
 import (
+	"bytes"
 	"context"
 	"errors"
-	"fmt"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/client"
@@ -11,6 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"iCloud/commons"
 	"iCloud/log"
+	"io"
 	"net/http"
 	"strconv"
 )
@@ -177,6 +178,8 @@ func hostConfInit(conf *ContainerConfiguration) (hostConf *container.HostConfig,
 			mountConf = append(mountConf, dir+":"+dir)
 		}
 	}
+	// mount local /etc/localtime to container /etc/localtime, to make time in container is equal to host
+	mountConf = append(mountConf, "/etc/localtime")
 
 	if resourceConf, err = resourceConfInit(conf); err != nil {
 		err = errors.New("resource config init error")
@@ -451,7 +454,6 @@ func ContainerRemove(ctx *gin.Context) {
 		err   error
 	)
 	ip, id := ctx.Param("ip"), ctx.Param("id")
-	fmt.Println(ip, id)
 	if cli, exist = DockerApiCliMap[ip]; !exist {
 		rsp["ErrorCode"], rsp["Data"] = 1, "ip error"
 		goto RESPONSE
@@ -474,14 +476,13 @@ RESPONSE:
 
 func ContainerDetail(ctx *gin.Context) {
 	var (
-		rsp   = make(gin.H)
-		cli   *client.Client
-		exist bool
-		err   error
+		rsp    = make(gin.H)
+		cli    *client.Client
+		exist  bool
+		err    error
 		detail types.ContainerJSON
 	)
 	ip, id := ctx.Param("ip"), ctx.Param("id")
-	fmt.Println(ip, id)
 	if cli, exist = DockerApiCliMap[ip]; !exist {
 		rsp["ErrorCode"], rsp["Data"] = 1, "ip error"
 		goto RESPONSE
@@ -496,3 +497,40 @@ func ContainerDetail(ctx *gin.Context) {
 RESPONSE:
 	ctx.JSON(http.StatusOK, rsp)
 }
+
+func ContainerLogs(ctx *gin.Context) {
+	var (
+		rsp          = make(gin.H)
+		cli          *client.Client
+		exist        bool
+		err          error
+		containerLog io.ReadCloser
+		logOption    = new(types.ContainerLogsOptions)
+		m            = "apps.docker.ContainerLogs"
+		ip, id       = ctx.Param("ip"), ctx.Param("id")
+		buf = new(bytes.Buffer)
+	)
+
+	if err = ctx.BindJSON(logOption); err != nil {
+		log.Logger.Errorf("%s error, read container log options data error: %v", m, err)
+		rsp["ErrorCode"], rsp["Data"] = 1, "request container log options error"
+		goto RESPONSE
+	}
+
+	if cli, exist = DockerApiCliMap[ip]; !exist {
+		rsp["ErrorCode"], rsp["Data"] = 1, "ip error"
+		goto RESPONSE
+	}
+
+	if containerLog, err = cli.ContainerLogs(context.TODO(), id, *logOption); err != nil {
+		log.Logger.Errorf("%s error, get container[%s] log error: %v", m, id, err)
+		goto RESPONSE
+	}
+
+	buf.ReadFrom(containerLog)
+	rsp["ErrorCode"], rsp["Data"] = 0, buf.String()
+
+RESPONSE:
+	ctx.JSON(http.StatusOK, rsp)
+}
+

@@ -1,16 +1,21 @@
 package main
 
-import (
-	"fmt"
-	"strconv"
-)
+import "fmt"
+
+type T struct {
+	name string
+	age int
+	love bool
+}
 
 func main() {
-	s := "1.5"
-	if f, err := strconv.ParseFloat(s, 64); err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println(f)
-	}
+	t := new(T)
+	test(t)
+	fmt.Println(t)
+}
 
+func test(t *T) {
+	if t.name == "" {
+		t.name = "yinuo"
+	}
 }
