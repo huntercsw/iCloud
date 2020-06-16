@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="dependents/assets/images/favicon.png">
+    <title>AdminBite admin Template - The Ultimate Multipurpose admin template</title>
+	
+	<!-- Sweet Alert-->
+	<link href="dependents/assets/libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+	<!-- bootstrap-table-->
+	<link href="dependents/assets/plugins/bootstrap-table-v4/bootstrap-table.min.css" rel="stylesheet"/>
+    <!-- Custom CSS -->
+    <link href="dependents/dist/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+   <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
+                        <i class="ti-menu ti-close"></i>
+                    </a>
+					<!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="index.html">
+						<!-- Logo icon -->
+                        <b class="logo-icon">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="dependents/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="dependents/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span class="logo-text">
+                            <!-- dark Logo text -->
+                            <img src="dependents/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo text -->
+                            <img src="dependents/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                        </span>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="ti-more"></i>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-left mr-auto">
+                        <li class="nav-item d-none d-md-block">
+                            <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar">
+                                <i class="sl-icon-menu font-20"></i>
+                            </a>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- mega menu -->
+                        <!-- ============================================================== -->
+  
+  
+                        <!-- ============================================================== -->
+                        <!-- End mega menu -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+
+						
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+
+						
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+
+
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+					<ul class="navbar-nav float-right">
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <span name="user_name_setter" class="rounded-circle" width="31">user</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                <span class="with-arrow">
+                                    <span class="bg-primary"></span>
+                                </span>
+                                <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
+                                    <div class="">
+                                        <span>当前用户: </span>
+                                    </div>
+                                    <div class="m-l-10">
+                                        <h4 class="m-b-0" name="user_name_setter" id="user_name">user</h4>
+                                    </div>
+                                </div>
+								
+                                <a class="dropdown-item" href="password_modify.html">
+                                    <i class="ti-settings m-r-5 m-l-5"></i> 修改密码</a>
+                                <div class="dropdown-divider"></div>
+								
+                                <a class="dropdown-item" href="javascript:void(0)" onclick="logout()">
+                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> 退  出</a>
+                                <div class="dropdown-divider"></div>
+                                <div class="p-l-30 p-10">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">BACK</a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+
+						<li class="sidebar-item">
+                            <a class="sidebar-link" href="index.html">
+                                <i class="fas fa-server"></i>
+                                <span class="hide-menu">Host List </span>
+                            </a>
+                        </li>
+						
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-5 align-self-center">
+                        <h4 class="page-title">iCloud Host List</h4>
+                        <div class="d-flex align-items-center">
+
+                        </div>
+                    </div>
+                    <div class="col-7 align-self-center">
+                        <div class="d-flex no-block justify-content-end align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item active" aria-current="page">Hosts</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table" id="hosts_list_table"></table>
+									
+									<!-- job edit model -->
+									<!-- ================================================= -->
+									<div class="modal fade" id="job_edit_model" tabindex="-1" role="dialog" aria-labelledby="jobEditModal" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title" id="jobEditModal">Job Edit</h4>
+												</div>
+												<div class="modal-body">
+													<form class="m-t-40" id="job_edit_form" novalidate>
+														<div class="form-group">
+															<h5>Job name <span class="text-danger">*</span></h5>
+															<div class="controls">
+																<input type="text" class="form-control" id="job_edit_input_name" name="name" required data-validation-required-message="Job Name"> 
+															</div>
+														</div>
+														<div class="form-group">
+															<h5>Job Command <span class="text-danger">*</span></h5>
+															<div class="controls">
+																<input type="text" class="form-control" id="job_edit_input_command" name="command" required data-validation-required-message="Job Command"> </div>
+														</div>
+														<div class="form-group">
+															<h5>Cron Express <span class="text-danger">*</span></h5>
+															<div class="controls">
+																<input type="text" class="form-control" id="job_edit_input_cronExpress" name="cronExpress" required data-validation-required-message="Cron Express"> </div>
+														</div>
+														<div class="form-group">
+															<h5>Cron Host <span class="text-danger">*</span></h5>
+															<div class="controls">
+																<input type="text" class="form-control" id="job_edit_input_host" name="hostName" required data-validation-required-message="Cron Host"> </div>
+														</div>
+														
+														<div class="text-xs-right">
+															<button type="button" class="btn btn-info" id="job_edit_subbmit_button">提交</button>
+															<button type="reset" class="btn btn-inverse">清空</button>
+														</div>
+													</form>					
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+													</button>
+												</div>
+											</div><!-- /.modal-content -->
+										</div><!-- /.modal -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+                <!-- row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+       All Rights Reserved by AdminBite admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+</footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+
+    
+    <div class="chat-windows"></div>
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="dependents/assets/libs/jquery/dist/jquery.min.js"></script>
+	<!-- SweetAlert2 -->
+	<script src="dependents/assets/libs/sweetalert2/dist/sweetalert2.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="dependents/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="dependents/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- bootstrap-table -->
+	<script src="dependents/assets/plugins/bootstrap-table-v4/bootstrap-table.min.js"></script>
+	<script src="dependents/assets/plugins/bootstrap-table-v4/bootstrap-table-zh-CN.min.js"></script>
+    <!-- apps -->
+    <script src="dependents/dist/js/app.min.js"></script>
+    <script src="dependents/dist/js/app.init.js"></script>
+    <script src="dependents/dist/js/app-style-switcher.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="dependents/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="dependents/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="dependents/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="dependents/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="dependents/dist/js/custom.min.js"></script>
+	<script src="dependents/assets/extra-libs/jqbootstrapvalidation/validation.js"></script>
+	
+	<script type="text/javascript">
+		var $table = $('#hosts_list_table');
+		var editRow
+		function tableInit() {
+			var data = null
+			$.ajax({
+				url: "/iCloudApi/hosts/list",
+				type: "get",
+				async:false,
+				dataType: "json",
+				success: function(res){
+					switch (res.ErrorCode) {
+						case 0:
+							data = res.Data
+							console.log(data)
+							break;
+						default:
+							alert("ErrorCode: " + res.ErrorCode + "; ErrorMessage: " + res.Data)
+							break;
+					}
+				}
+			})
+
+		
+			$(function() {
+				$(document).on('focus', 'input[type="text"]', function() {
+					$(this).parent().find('label').addClass('active');
+				}).on('blur', 'input[type="text"]', function() {
+					if ($(this).val() == '') {
+						$(this).parent().find('label').removeClass('active');
+					}
+				});
+				
+				$table.bootstrapTable('destroy');
+
+				$table.bootstrapTable({
+					striped: true,
+					search: true,
+					searchOnEnterKey: true,
+					showSearchButton: true,
+					showRefresh: false,
+					showToggle: false,
+					showColumns: true,
+					minimumCountColumns: 2,
+					showPaginationSwitch: true,
+					clickToSelect: true,
+
+					pagination: true,
+					paginationLoop: false,
+					pageList: [5, 10, 15, 30, 50],
+					
+					classes: 'table table-hover table-bordered border border-info ',
+					theadClasses: 'thead-blue  bg-info text-white',
+					
+					//sidePagination: 'server',
+					//silentSort: false,
+					smartDisplay: false,
+					idField: 'id',
+					sortName: 'id',
+					sortOrder: 'desc',
+					escape: true,
+
+					////点击分页后记住前面复选框的选择
+					maintainSelected: true,
+					toolbar: '#toolbar',
+					
+					// 自定义表格样式
+					paginationPreText: "上一页",
+					paginationNextText: "下一页",
+					
+										
+					columns: [
+						{field: 'state', checkbox: true},
+						{field: 'hostName', title: 'HostName', sortable: true, halign: 'center', align: 'center', formatter: hostNameFormat},
+						{field: 'ip', title: 'IP', sortable: true, halign: 'center', align: 'center', formatter: ipFormat},
+						{field: 'apiPort', title: 'Port', sortable: true, halign: 'center', align: 'center', formatter: portFormat},
+						{field: 'os', title: 'OS', sortable: true, halign: 'center', align: 'center', formatter: osFormat},
+						{field: 'cpuCores', title: 'CpuCores', sortable: true, halign: 'center', align: 'center', formatter: cpuCoresFormat},
+						{field: 'cpuUsage', title: 'CpuUsage', sortable: true, halign: 'center', align: 'center', formatter: cpuUsageFormat},
+						{field: 'totalMem', title: 'TotalMem', sortable: true, halign: 'center', align: 'center', formatter: totalMemFormat},
+						{field: 'freeMem', title: 'FreeMem', sortable: true, halign: 'center', align: 'center', formatter: freeMmFormatv},
+						{field: 'totalDisk', title: 'TotalDisk', sortable: true, halign: 'center', align: 'center', formatter: totalDiskFormat},
+						{field: 'freeDisk', title: 'FreeDisk', sortable: true, halign: 'center', align: 'center', formatter: freeDiskFormat},
+						{field: 'heartbeat', title: 'Status', sortable: true, halign: 'center', align: 'center', formatter: statusFormat},
+					]
+				}).on('all.bs.table', function (e, name, args) {
+					$('[data-toggle="tooltip"]').tooltip();
+					$('[data-toggle="popover"]').popover();  
+				});
+				if (data != null ){
+					$table.bootstrapTable('load',data); 
+				}
+			});
+			
+			//**************************************
+			// field action format
+			function statusFormat(value, row, index) {
+				if (value > 60) {
+					return '<span class="label label-warning">OFFLINE</span>'
+				} else {
+					return '<span class="label label-success">ONLINE</span>'
+				}
+			}
+			
+			function hostNameFormat(value, row, index) {				
+				return '<a style="font-family:verdana; color:#4798e8; font-weight: 700" href="container_list.html?ip='+row.ip+'&port='+row.apiPort+'&rPort='+row.grpcPort+'&c='+row.cpuCores+'&m='+row.totalMem+'" title="show containers">' + value + '</a>'
+			}
+			
+			function ipFormat(value, row, index) {				
+				return '<span style="font-family:verdana; color:#4798e8; font-weight: 700">' + value + '</span>'
+			}
+			
+			function portFormat(value, row, index) {				
+				return '<span style="font-family:verdana; color:#4798e8; font-weight: 700">' + value + '</span>'
+			}
+			
+			function osFormat(value, row, index) {				
+				return '<span style="font-family:verdana; color:#4798e8; font-weight: 700">' + value + '</span>'
+			}
+			
+			function cpuCoresFormat(value, row, index) {				
+				return '<span style="color:#4798e8; font-weight: 700">' + value + '</span>'
+			}
+			
+			function cpuUsageFormat(value, row, index) {
+				switch (true){
+					case value <= "50": 
+						return '<span style="color:#20c997; font-weight: 700">' + value + '%</span>'
+						break
+					case value > "50" && value <= "70":
+						return '<span style="color: #ffbc34; font-weight: 700">' + value + '%</span>'
+						break
+					default:
+						return '<span style="color: #ef6e6e; font-weight: 700">' + value + '%</span>'
+						break
+				}
+			}
+			
+			function totalMemFormat(value, row, index) {				
+				return '<span style="color:#4798e8; font-weight: 700">' + value + 'G</span>'
+			}
+			
+			function freeMmFormatv(value, row, index) {
+				var v = parseFloat(value) / parseFloat(row.totalMem)
+				switch (true) {
+					case v <= 0.3:
+						return '<span style="color: #ef6e6e; font-weight: 700">' + value + 'G</span>'
+					case v <= 0.5 && v > 0.3:
+						return '<span style="color: #ffbc34; font-weight: 700">' + value + 'G</span>'
+					default:
+						return '<span style="color:#20c997; font-weight: 700">' + value + 'G</span>'
+				}
+			}
+			
+			function totalDiskFormat(value, row, index) {				
+				return '<span style="color:#4798e8; font-weight: 700">' + value + 'G</span>'
+			}
+			
+			function freeDiskFormat(value, row, index) {
+				var v = parseFloat(value) / parseFloat(row.totalDisk)
+				switch (true) {
+					case v <= 0.3:
+						return '<span style="color: #ef6e6e; font-weight: 700">' + value + 'G</span>'
+					case v <= 0.5 && v > 0.3:
+						return '<span style="color: #ffbc34; font-weight: 700">' + value + 'G</span>'
+					default:
+						return '<span style="color:#20c997; font-weight: 700">' + value + 'G</span>'
+				}
+			}
+			
+			window.actionEvents = {
+				'click .remove': function (e, value, row, index) {
+					swal({   
+						title: "Are you sure to delete job？", 
+						type: "warning",   
+						showCancelButton: true,   
+						confirmButtonColor: "#DD6B55",   
+						confirmButtonText: "Yes",   
+						cancelButtonText: "Cancel",   
+						closeOnConfirm: false,   
+						closeOnCancel: false 
+					}).then(function(isConfirm){
+						if (isConfirm.value) {
+							$.ajax({
+								url: "/crontab/jobs/delete?jobName=" + row.name,
+								type: "delete",
+								async:false,
+								dataType: "json",
+								success: function(res){
+									switch (res.ErrorCode) {
+										case 0:
+											$table.bootstrapTable('remove', {field: 'name',values: [row.name] });
+											break;
+										default:
+											alert("ErrorCode: " + res.ErrorCode + "; ErrorMessage: " + res.Data)
+											break;
+									}
+								}
+							})
+						}
+					})
+
+				},
+				'click .edit': function(e, value, row, index) {
+					$("#job_edit_input_name").val(row.name)
+					$("#job_edit_input_command").val(row.command)
+					$("#job_edit_input_cronExpress").val(row.cronExpress)
+					$("#job_edit_input_host").val(row.hostName)
+					editRow = row
+				}
+			};
+		}
+		
+		$("#job_edit_subbmit_button").click(function(){
+			$.ajax({  
+				type: "POST",
+				url:"/crontab/jobs/put?jobName=" + editRow.name,
+				data:$('#job_edit_form').serialize(),
+				dataType: "json",
+				success: function(res) {
+					if (res.ErrorCode == 0) {
+						$('#job_edit_model').modal('toggle')
+						$.ajax({
+							url: "/crontab/jobs/list",
+							type: "get",
+							async:false,
+							dataType: "json",
+							success: function(res){
+								switch (res.ErrorCode) {
+									case 0:
+										$table.bootstrapTable('removeAll');
+										$table.bootstrapTable('load',res.Data); 
+										break;
+									default:
+										alert("ErrorCode: " + res.ErrorCode + "; ErrorMessage: " + res.Data)
+										break;
+								}
+							}
+						})
+						
+					} else {
+						alert(res.Data)
+					}
+				}  
+			});
+		})
+		
+		tableInit()
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="dependents/assets/images/favicon.png">
+    <title>AdminBite admin Template - The Ultimate Multipurpose admin template</title>
+	
+	<!-- Sweet Alert-->
+	<link href="dependents/assets/libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+	<!-- bootstrap-table-->
+	<link href="dependents/assets/plugins/bootstrap-table-v4/bootstrap-table.min.css" rel="stylesheet"/>
+    <!-- Custom CSS -->
+    <link href="dependents/dist/css/style.min.css" rel="stylesheet">
+	<link href="dependents/assets/libs/nouislider/distribute/nouislider.min.css" rel="stylesheet">
+    <link href="dependents/assets/extra-libs/nouislider/noui-slider.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+   <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
+                        <i class="ti-menu ti-close"></i>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="index.html">
+						<!-- Logo icon -->
+                        <b class="logo-icon">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="dependents/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="dependents/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span class="logo-text">
+                            <!-- dark Logo text -->
+                            <img src="dependents/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo text -->
+                            <img src="dependents/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                        </span>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="ti-more"></i>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-left mr-auto">
+                        <li class="nav-item d-none d-md-block">
+                            <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar">
+                                <i class="sl-icon-menu font-20"></i>
+                            </a>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- mega menu -->
+                        <!-- ============================================================== -->
+  
+  
+                        <!-- ============================================================== -->
+                        <!-- End mega menu -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+
+						
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+
+						
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+
+
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+					<ul class="navbar-nav float-right">
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <span name="user_name_setter" class="rounded-circle" width="31">user</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                <span class="with-arrow">
+                                    <span class="bg-primary"></span>
+                                </span>
+                                <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
+                                    <div class="">
+                                        <span>当前用户: </span>
+                                    </div>
+                                    <div class="m-l-10">
+                                        <h4 class="m-b-0" name="user_name_setter" id="user_name">user</h4>
+                                    </div>
+                                </div>
+								
+                                <a class="dropdown-item" href="password_modify.html">
+                                    <i class="ti-settings m-r-5 m-l-5"></i> 修改密码</a>
+                                <div class="dropdown-divider"></div>
+								
+                                <a class="dropdown-item" href="javascript:void(0)" onclick="logout()">
+                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> 退  出</a>
+                                <div class="dropdown-divider"></div>
+                                <div class="p-l-30 p-10">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">BACK</a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+
+						<li class="sidebar-item">
+                            <a class="sidebar-link" href="index.html">
+                                <i class="fas fa-server"></i>
+                                <span class="hide-menu">Host List </span>
+                            </a>
+                        </li>
+						
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-5 align-self-center">
+                        <h4 class="page-title">iCloud Container Configuration</h4>
+                        <div class="d-flex align-items-center">
+
+                        </div>
+                    </div>
+                    <div class="col-7 align-self-center">
+                        <div class="d-flex no-block justify-content-end align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+										<a href="javascript:void(0)" onclick="goto_container_list()">Containers</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">ContainerConfig</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+				<form action="#" enctype='application/json' id="container_conf_form">
+					<div class="row">
+						<div class="col-12">
+							<h4 class="card-title m-t-40">Container Name</h4>
+							<div class="card">
+								<div class="form-body card-body">
+									<div id="container_name_conf_div">
+										<div class="row p-t-20">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" id="container_name" name="container_name" class="form-control" placeholder="Name Of Container">
+                                                    <small class="form-control-feedback"> Container name should be unique identification </small> 
+												</div>
+                                            </div>
+                                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<h4 class="card-title m-t-40">Dir Config</h4>
+							<div class="card">
+								<div class="form-body card-body">
+									<div id="container_dir_conf_div">
+										<div class="email-repeater form-group">
+											<div data-repeater-list="repeater-group">
+												<div data-repeater-item class="row m-b-15 account_edit_broker">
+													<div class="col-md-6">
+														<input type="text" class="form-control source_dir" placeholder="Source Data Dir" required>
+													</div>
+													<div class="col-md-1">
+														<button data-repeater-delete="" class="btn btn-danger waves-effect waves-light" name="dir_remove" type="button"><i class="ti-close"></i>
+														</button>
+													</div>
+												</div>
+											</div>
+											<button type="button" data-repeater-create="" class="btn btn-info waves-effect waves-light" id="container_dir_conf_add_button">Add
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<h4 class="card-title m-t-40">Net Config</h4>
+							<div class="card">
+								<div class="form-body card-body">
+									<div id="container_net_conf_div">
+										<div class="email-repeater form-group">
+											<div data-repeater-list="repeater-group">
+												<div data-repeater-item class="row m-b-15 account_edit_broker">
+													<div class="col-md-3">
+														<input type="text" class="form-control container_port" placeholder="Container Port" required>
+													</div>
+													<div class="col-md-3">
+														<input type="text" class="form-control host_port" placeholder="Redirect To Host Port" required>
+													</div>
+													<div class="col-md-1">
+														<button data-repeater-delete="" class="btn btn-danger waves-effect waves-light" name="port_remove" type="button"><i class="ti-close"></i>
+														</button>
+													</div>
+												</div>
+											</div>
+											<button type="button" data-repeater-create="" class="btn btn-info waves-effect waves-light" id="container_net_conf_add_button">Add
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<h4 class="card-title m-t-40">Choose Image</h4>
+							<div class="card">
+								<div class="form-body card-body">
+									<div id="container_image_conf_div">
+										<div class="row p-t-20">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <select class="form-control custom-select" id="container_conf_image_select" name="container_image" data-placeholder="Choose a Category">
+                                                        
+                                                    </select>
+												</div>
+                                            </div>
+                                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<h4 class="card-title m-t-40">Commands When Container Run</h4>
+							<div class="card">
+								<div class="form-body card-body">
+									<div id="commands_div">
+										<div class="email-repeater form-group">
+											<div data-repeater-list="repeater-group">
+												<div data-repeater-item class="row m-b-15 account_edit_broker">
+													<div class="col-md-11">
+														<input type="text" class="form-control commands" placeholder="Command" required>
+													</div>
+													<div class="col-md-1">
+														<button data-repeater-delete="" class="btn btn-danger waves-effect waves-light" name="dir_remove" type="button"><i class="ti-close"></i>
+														</button>
+													</div>
+												</div>
+											</div>
+											<button type="button" data-repeater-create="" class="btn btn-info waves-effect waves-light" id="command_add_button">Add
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<h4 class="card-title m-t-40">Working Directory</h4>
+							<div class="card">
+								<div class="form-body card-body">
+									<div id="container_pwd_conf_div">
+										<div class="row p-t-20">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" id="container_pwd" name="container_pwd" class="form-control" placeholder="Working Directory The Command Will Be Launched">
+													<small class="form-control-feedback"> Absolute Path Should Be Given </small> 
+												</div>
+                                            </div>
+                                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<h4 class="card-title m-t-40">CPU Config</h4>
+							<div class="card">
+								<div class="form-body card-body">
+									<div id="container_cpu_conf_div">
+										<div class="row p-t-20">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+													<div id="container_cpu_conf" class="m-t-15 m-b-40"></div>
+												</div>
+                                            </div>
+                                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-6">
+							<h4 class="card-title m-t-40">Memory Config</h4>
+							<div class="card">
+								<div class="form-body card-body">
+									<div id="container_Mem_conf_div">
+										<div class="row p-t-20">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+													<div id="container_mem_conf" class="m-t-15 m-b-40"></div>
+												</div>
+                                            </div>
+                                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="card-body">
+						<div class="form-group m-b-0 text-right">
+							<button type="button" class="btn btn-info waves-effect waves-light" id="container_conf_subimt_button">Submit</button>
+							<button type="reset" class="btn btn-dark waves-effect waves-light">Reset</button>
+						</div>
+					</div>
+				</form>
+                <!-- row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+       All Rights Reserved by AdminBite admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+</footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+
+    
+    <div class="chat-windows"></div>
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="dependents/assets/libs/jquery/dist/jquery.min.js"></script>
+	<!-- SweetAlert2 -->
+	<script src="dependents/assets/libs/sweetalert2/dist/sweetalert2.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="dependents/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="dependents/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- bootstrap-table -->
+	<script src="dependents/assets/plugins/bootstrap-table-v4/bootstrap-table.min.js"></script>
+	<script src="dependents/assets/plugins/bootstrap-table-v4/bootstrap-table-zh-CN.min.js"></script>
+    <!-- apps -->
+    <script src="dependents/dist/js/app.min.js"></script>
+    <script src="dependents/dist/js/app.init.js"></script>
+    <script src="dependents/dist/js/app-style-switcher.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="dependents/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="dependents/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="dependents/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="dependents/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="dependents/dist/js/custom.min.js"></script>
+
+	<!--This page JavaScript -->
+    <script src="dependents/assets/libs/jquery.repeater/jquery.repeater.min.js"></script>
+    <script src="dependents/assets/extra-libs/jquery.repeater/repeater-init.js"></script>
+	<script src="dependents/assets/libs/wnumb/wNumb.js"></script>
+    <script src="dependents/assets/libs/nouislider/distribute/nouislider.min.js"></script>
+	
+	<script type="text/javascript">
+		function getUrlParam(variable) {
+			var query = window.location.search.substring(1);
+			var vars = query.split("&");
+			for (var i=0;i<vars.length;i++) {
+				var pair = vars[i].split("=");
+				if(pair[0] == variable){return pair[1];}
+			}
+			return("");
+		}
+		
+		function goto_container_list() {
+			window.location.href = "container_list.html?ip=" + getUrlParam("ip") + "&port=" + getUrlParam("port") + "&rPort=" + getUrlParam("rPort") + "&c=" + getUrlParam("c") + "&m=" + getUrlParam("m")
+		}
+		
+		function image_select_init(){
+			$.ajax({
+				url: "/iCloudApi/containers/lsImage?ip=" + getUrlParam("ip") + "&port=" + getUrlParam("port"),
+				type: "get",
+				async:false,
+				dataType: "json",
+				success: function(res){
+					if (res.ErrorCode == 0) {
+						console.log(res.Data)
+						var options = '<option value="">--------Please Choose An Image--------</option>';
+						for (var i = 0; i < res.Data.length; i++) {
+							for (var j = 0; j < res.Data[i].RepoTags.length; j++) {
+								options += '<option style="font-family:verdana" value="' + res.Data[i].RepoTags[j] + '">' + res.Data[i].RepoTags[j] + '</option>';								
+							}
+						}
+						$("#container_conf_image_select").html(options);
+					} else {
+						alert("ErrorCode: " + res.ErrorCode + "; ErrorMessage: " + res.Data)
+					}
+				}
+			})
+		}
+		
+		$("#container_conf_subimt_button").click(function(){
+			console.log(containerCpu.noUiSlider.get())
+			console.log(containerMem.noUiSlider.get())
+			console.log($('#container_conf_form').serialize())
+			var container_name = $("#container_name").val()
+			var sd = [];
+			$(".source_dir").each(function(){
+				sd.push($(this).val());
+			})
+			var cp = [];
+			$(".container_port").each(function(){
+				cp.push($(this).val());
+			})
+			var hp = [];
+			$(".host_port").each(function(){
+				hp.push($(this).val());
+			})
+			var commands = [];
+			$(".commands").each(function(){
+				commands.push($(this).val());
+			})
+			var pwd = $("#container_pwd").val()
+			
+			var container_image = $("#container_conf_image_select").val()
+			var formData = {
+				"container_name": container_name,
+				"source_dir": sd,
+				"container_port": cp,
+				"host_port": hp,
+				"container_image": container_image,
+				"maxCpu": containerCpu.noUiSlider.get(),
+				"maxMem": containerMem.noUiSlider.get(),
+				"commands": commands,
+				"workingDir": pwd,
+				"clientIp": getUrlParam("ip"),
+				"rpcPort": getUrlParam("rPort")
+			}
+			console.log(formData)
+			
+			$.ajax({  
+				type: "POST",
+				url:"/iCloudApi/containers/createAndRun/" + getUrlParam("ip") + "/" + getUrlParam("port") + "/" + getUrlParam("rPort"),
+				data:JSON.stringify(formData),
+				dataType: "json",
+				async: false,
+				success: function(res) {
+					if (res.ErrorCode == 0) {
+						alert("SUCCEED")
+					} else {
+						alert("ErrorCode: " + res.ErrorCode + "; ErrorMessage: " + res.Data)
+					}
+				}  
+			});
+		})
+		
+		var range_cpu = {
+			'min': [0, 0.1],
+			'max': [Number(getUrlParam("c"))]
+		};
+		
+		var range_mem = {
+			'min': [0, 0.1],
+			'max': [Number(getUrlParam("m"))]
+		}
+		
+		// Range
+		var containerCpu = document.getElementById('container_cpu_conf'),
+			containerMem = document.getElementById('container_mem_conf');
+
+		noUiSlider.create(containerCpu, {
+			range: range_cpu,
+			start: 0,
+			tooltips: [wNumb({decimals: 1})],
+			pips: {
+				mode: 'range',
+				density: 3
+			}
+		});
+
+		noUiSlider.create(containerMem, {
+			range: range_mem,
+			start: 0,
+			tooltips: [wNumb({decimals: 1})],
+			pips: {
+				mode: 'range',
+				density: 3
+			}
+		});
+		
+		image_select_init()
+	</script>
+</body>
+
+</html>
