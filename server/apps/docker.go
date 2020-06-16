@@ -4,13 +4,16 @@ import (
 	"bytes"
 	"context"
 	"errors"
+	"fmt"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
+	"github.com/docker/docker/api/types/strslice"
 	"github.com/docker/docker/client"
 	"github.com/docker/go-connections/nat"
 	"github.com/gin-gonic/gin"
 	"iCloud/commons"
 	"iCloud/log"
+	"iCloud/rpcServer"
 	"io"
 	"net/http"
 	"strconv"
@@ -31,6 +34,10 @@ type ContainerConfiguration struct {
 	ImageName     string   `json:"container_image"`
 	MaxCpu        string   `json:"maxCpu"`
 	MaxMem        string   `json:"maxMem"`
+	Commands      []string `json:"commands"`
+	Pwd           string   `json:"workingDir"`
+	ClientIp      string   `json:"clientIp"`
+	RpcPort       string   `json:"rpcPort"`
 }
 
 func (conf *ContainerConfiguration) confCheck() (err error) {
@@ -39,9 +46,30 @@ func (conf *ContainerConfiguration) confCheck() (err error) {
 		return
 	}
 
+	if conf.Pwd == "" {
+		err = errors.New("working directory name is null")
+		return
+	}
+
 	if len(conf.ContainerPort) != len(conf.HostPort) {
 		err = errors.New("count of port exported in container is not equal to it redirected to host")
 		return
+	}
+
+	for i := 0; i < len(conf.HostPort); i++ {
+		if conf.HostPort[i] == "" || conf.ContainerPort[i] == "" {
+			err = errors.New("both container port and host port can not be null")
+			return
+		}
+	}
+
+	if len(conf.Commands) > 0 {
+		for i := 0; i < len(conf.Commands); i++ {
+			if conf.Commands[i] == "" {
+				err = errors.New("command can not be null")
+				return
+			}
+		}
 	}
 
 	if conf.ImageName == "" {
@@ -128,12 +156,29 @@ func DockerApiCliPoolClose() {
 	}
 }
 
+func containerEntryPointInit(clientIp, rpcPort, pwd string, cmds strslice.StrSlice) (entryPoints strslice.StrSlice, err error) {
+	if len(cmds) == 1 {
+		entryPoints = strings.Split(cmds[0], " ")
+		return
+	}
+
+	if err = rpcServer.CreateEntryPointScript(clientIp, rpcPort, pwd, cmds); err != nil {
+		return
+	}
+
+	entryPoints = make(strslice.StrSlice, 0)
+	entryPoints = append(entryPoints, "./"+commons.CONTAINER_ENTRY_POINT_SCRIPT)
+	return
+}
+
 func containerConfInit(conf *ContainerConfiguration) (containerConf *container.Config, err error) {
 	var (
 		port             nat.Port
 		containerPortSet = make(nat.PortSet)
 		m                = "apps.docker.containerConfInit()"
 	)
+
+	containerConf = &container.Config{Image: conf.ImageName, WorkingDir: conf.Pwd}
 
 	// ports container exported
 	if len(conf.ContainerPort) > 0 {
@@ -144,9 +189,18 @@ func containerConfInit(conf *ContainerConfiguration) (containerConf *container.C
 			}
 			containerPortSet[port] = struct{}{}
 		}
+		if len(containerPortSet) > 0 {
+			containerConf.ExposedPorts = containerPortSet
+		}
 	}
 
-	return &container.Config{Image: conf.ImageName, ExposedPorts: containerPortSet}, nil
+	if len(conf.Commands) > 0 {
+		if containerConf.Entrypoint, err = containerEntryPointInit(conf.ClientIp, conf.RpcPort, conf.Pwd, conf.Commands); err != nil {
+			return
+		}
+	}
+
+	return containerConf, nil
 }
 
 func hostConfInit(conf *ContainerConfiguration) (hostConf *container.HostConfig, err error) {
@@ -176,22 +230,29 @@ func hostConfInit(conf *ContainerConfiguration) (hostConf *container.HostConfig,
 	// mount host dir to container: local_dir:container_dir
 	if len(conf.SourceDir) > 0 {
 		for _, dir := range conf.SourceDir {
-			mountConf = append(mountConf, dir+":"+dir)
+			if dir != "" {
+				mountConf = append(mountConf, dir+":"+dir)
+			}
 		}
 	}
 	// mount local /etc/localtime to container /etc/localtime, to make time in container is equal to host
-	mountConf = append(mountConf, "/etc/localtime")
+	mountConf = append(mountConf, "/etc/localtime:/etc/localtime")
 
 	if resourceConf, err = resourceConfInit(conf); err != nil {
 		err = errors.New("resource config init error")
 		return
 	}
 
-	return &container.HostConfig{
-		PortBindings: bindPortMap,
-		Binds:        mountConf,
-		Resources:    *resourceConf,
-	}, nil
+	hostConf = &container.HostConfig{
+		Binds:     mountConf,
+		Resources: *resourceConf,
+	}
+
+	if len(bindPortMap) > 0 {
+		hostConf.PortBindings = bindPortMap
+	}
+
+	return hostConf, nil
 }
 
 func resourceConfInit(conf *ContainerConfiguration) (resourceConf *container.Resources, err error) {
@@ -224,7 +285,7 @@ func createContainer(cli *client.Client, conf *ContainerConfiguration) (containe
 		configObj  *container.Config
 		hostConfig *container.HostConfig
 		_container container.ContainerCreateCreatedBody
-		m          = "apps.docker.createRunContainer()"
+		m          = "apps.docker.createContainer()"
 	)
 
 	if configObj, err = containerConfInit(conf); err != nil {
@@ -236,6 +297,9 @@ func createContainer(cli *client.Client, conf *ContainerConfiguration) (containe
 		err = errors.New("host config object init error")
 		return
 	}
+
+	fmt.Println(hostConfig)
+	fmt.Println(configObj)
 
 	if _container, err = cli.ContainerCreate(context.Background(), configObj, hostConfig, nil, conf.ContainerName); err != nil {
 		log.Logger.Errorf("%s error, create container error: %v", m, err)
@@ -509,7 +573,7 @@ func ContainerLogs(ctx *gin.Context) {
 		logOption    = new(types.ContainerLogsOptions)
 		m            = "apps.docker.ContainerLogs"
 		ip, id       = ctx.Param("ip"), ctx.Param("id")
-		buf = new(bytes.Buffer)
+		buf          = new(bytes.Buffer)
 	)
 
 	if err = ctx.BindJSON(logOption); err != nil {
@@ -517,6 +581,8 @@ func ContainerLogs(ctx *gin.Context) {
 		rsp["ErrorCode"], rsp["Data"] = 1, "request container log options error"
 		goto RESPONSE
 	}
+
+	logOption.Timestamps = true
 
 	if cli, exist = DockerApiCliMap[ip]; !exist {
 		rsp["ErrorCode"], rsp["Data"] = 1, "ip error"
@@ -529,9 +595,8 @@ func ContainerLogs(ctx *gin.Context) {
 	}
 
 	buf.ReadFrom(containerLog)
-	rsp["ErrorCode"], rsp["Data"] = 0, strings.Split(buf.String(), "\r\n")
+	rsp["ErrorCode"], rsp["Data"] = 0, strings.Split(buf.String(), "\n")
 
 RESPONSE:
 	ctx.JSON(http.StatusOK, rsp)
 }
-

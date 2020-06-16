@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package rpcServer;
+
+
+service CreateContainerEntryPointScript {
+    rpc CreateScript (CreateScriptRequest) returns (CreateScriptResponse) {}
+}
+
+message CreateScriptRequest {
+    string pwd = 1;
+    repeated string cmd = 2;
+}
+
+message CreateScriptResponse {
+    string errMessage = 1;
+}

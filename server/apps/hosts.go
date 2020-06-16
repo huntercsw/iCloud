@@ -69,3 +69,38 @@ func hostListHandler(ctx context.Context, wg *sync.WaitGroup, rsp gin.H) {
 
 	return
 }
+
+func GetHostByIp(ctx context.Context, wg *sync.WaitGroup, ip string) (host *commons.Host, err error) {
+	var (
+		getRsp *clientv3.GetResponse
+		m      = "apps.hosts.GetHostByIp()"
+		rspCh  = make(chan struct{}, 1)
+		key = commons.ETCD_KEY_PRE + ip
+	)
+	defer func() {
+		close(rspCh)
+		wg.Done()
+	}()
+
+	go func() {
+		if getRsp, err = commons.EtcdCli.Get(context.TODO(), key); err != nil {
+			log.Logger.Errorf("%s error, get host from etcd by ip error: %v", m, err)
+		} else {
+			for _, v := range getRsp.Kvs {
+				host = new(commons.Host)
+				if err = json.Unmarshal(v.Value, host); err != nil {
+					log.Logger.Errorf("%s error, %s json unmarshal error: %v", m, v.Key, err)
+				}
+			}
+		}
+		rspCh <- struct{}{}
+	}()
+
+	select {
+	case <-ctx.Done():
+	case <-rspCh:
+	}
+
+	return
+}
+

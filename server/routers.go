@@ -15,11 +15,11 @@ func ICloudRouter(r *gin.Engine) {
 	{
 		DockerConfigRouters.GET("/list", apps.ContainerList)
 		DockerConfigRouters.GET("/lsImage", apps.ImageList)
-		DockerConfigRouters.POST("/createAndRun/:ip/:port", apps.ContainerCreate)
-		DockerConfigRouters.PUT("/start/:id/:ip/:port", apps.ContainerStart)
-		DockerConfigRouters.PUT("/stop/:id/:ip/:port", apps.ContainerStop)
-		DockerConfigRouters.DELETE("/remove/:id/:ip/:port", apps.ContainerRemove)
-		DockerConfigRouters.GET("/detail/:id/:ip/:port", apps.ContainerDetail)
+		DockerConfigRouters.POST("/createAndRun/:ip/:port/:rPort", apps.ContainerCreate)
+		DockerConfigRouters.PUT("/start/:id/:ip/:port/:rPort", apps.ContainerStart)
+		DockerConfigRouters.PUT("/stop/:id/:ip/:port/:rPort", apps.ContainerStop)
+		DockerConfigRouters.DELETE("/remove/:id/:ip/:port/:rPort", apps.ContainerRemove)
+		DockerConfigRouters.GET("/detail/:id/:ip/:port/:rPort", apps.ContainerDetail)
 	}
 
 	DockerLogRouters := r.Group("/iCloudApi/logs")

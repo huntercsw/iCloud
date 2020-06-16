@@ -19,6 +19,7 @@ type ClientConf struct {
 	MaxBackups int      `xml:"maxBackups"` // max number of old log
 	MaxAge     int      `xml:"maxAge"`     // ax days of old log retained
 	Compress   bool     `xml:"compress"`   // compress or not
+	RpcPort    string   `xml:"rpcPort"`
 }
 
 func (conf *ClientConf) newConf() (err error) {
@@ -33,6 +34,10 @@ func (conf *ClientConf) newConf() (err error) {
 	if err = xml.Unmarshal(confContect, conf); err != nil {
 		fmt.Println("conf unmarshal to struct error:", err)
 		return
+	}
+
+	if conf.RpcPort == "" {
+		conf.RpcPort = DEFAULT_RPC_PORT
 	}
 
 	return nil

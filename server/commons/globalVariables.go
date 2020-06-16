@@ -7,10 +7,11 @@ import (
 )
 
 const (
-	GB                     uint64 = 1024 * 1024 * 1024
-	CONTAINER_STOP_TIMEOUT        = time.Second * 5
-	ETCD_KEY_PRE                  = "/iCloud/host_info/"
-	ETCD_TIMEOUT                  = 100
+	GB                           uint64 = 1024 * 1024 * 1024
+	CONTAINER_STOP_TIMEOUT              = time.Second * 5
+	ETCD_KEY_PRE                        = "/iCloud/host_info/"
+	ETCD_TIMEOUT                        = 100
+	CONTAINER_ENTRY_POINT_SCRIPT        = "start.sh"
 )
 
 var (

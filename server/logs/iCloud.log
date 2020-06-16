@@ -67,3 +67,42 @@
 2020-06-12T18:15:54.139+0800	INFO	server/main.go:40	iCloud server started
 2020-06-12T19:02:28.387+0800	INFO	server/main.go:40	iCloud server started
 2020-06-12T19:04:11.694+0800	INFO	server/main.go:40	iCloud server started
+2020-06-13T20:50:49.441+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T13:38:35.809+0800	ERROR	apps/docker.go:516	apps.docker.ContainerLogs error, read container log options data error: json: cannot unmarshal number into Go struct field ContainerLogsOptions.Tail of type string
+2020-06-15T13:40:34.559+0800	ERROR	apps/docker.go:516	apps.docker.ContainerLogs error, read container log options data error: json: cannot unmarshal number into Go struct field ContainerLogsOptions.Tail of type string
+2020-06-15T13:46:39.238+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T15:03:38.687+0800	ERROR	apps/docker.go:516	apps.docker.ContainerLogs error, read container log options data error: json: cannot unmarshal number into Go struct field ContainerLogsOptions.Tail of type string
+2020-06-15T15:55:27.151+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T16:53:50.293+0800	ERROR	apps/docker.go:241	apps.docker.createRunContainer() error, create container error: Error response from daemon: source is not directory
+2020-06-15T16:59:19.391+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T16:59:28.109+0800	ERROR	apps/docker.go:245	apps.docker.createContainer() error, create container error: Error response from daemon: source is not directory
+2020-06-15T17:01:00.316+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T17:02:23.498+0800	ERROR	apps/docker.go:259	apps.docker.startContainer() error, start container 52a886252f07347abdfd8a0c68302da8c919f5e7253edf77b6f590c12ac0a3a5 error: Error response from daemon: driver failed programming external connectivity on endpoint python-test (d21ca9bfcaa0b39cbde2c83d824c3636c0e74d211227e00ad70daa3bfb77fb9c):  (iptables failed: iptables --wait -t nat -A DOCKER -p tcp -d 0/0 --dport 32777 -j DNAT --to-destination 172.17.0.4:0 ! -i docker0: iptables v1.4.21: Port `0' not valid
+
+Try `iptables -h' or 'iptables --help' for more information.
+ (exit status 2))
+2020-06-15T17:12:46.401+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T17:18:01.846+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T17:48:39.821+0800	ERROR	apps/docker.go:265	apps.docker.startContainer() error, start container c28429a5b02f3698dea0ad798429534bcf52b7f0ab15abef03a845f5b9fde98d error: Error response from daemon: driver failed programming external connectivity on endpoint python-test (439edf09166bd0643e3ad3f34a83e1538b87ca8be50f331eb9e02e68d328fad4):  (iptables failed: iptables --wait -t nat -A DOCKER -p tcp -d 0/0 --dport 32787 -j DNAT --to-destination 172.17.0.4:0 ! -i docker0: iptables v1.4.21: Port `0' not valid
+
+Try `iptables -h' or 'iptables --help' for more information.
+ (exit status 2))
+2020-06-15T18:16:02.137+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T18:16:02.148+0800	INFO	server/main.go:44	iCloud server closed
+2020-06-15T18:17:08.076+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T18:17:08.086+0800	INFO	server/main.go:44	iCloud server closed
+2020-06-15T18:20:23.239+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T18:20:23.263+0800	INFO	server/main.go:44	iCloud server closed
+2020-06-15T18:29:47.665+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T19:22:36.663+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T19:46:40.306+0800	ERROR	apps/docker.go:301	apps.docker.startContainer() error, start container 90b7dfb3c42de1b955872cf2fd92bdeeafcbb393352346df64c7df44d649e183 error: Error response from daemon: OCI runtime create failed: container_linux.go:349: starting container process caused "exec: \"which python\": executable file not found in $PATH": unknown
+2020-06-15T19:59:27.435+0800	ERROR	apps/docker.go:301	apps.docker.startContainer() error, start container 03b7d10109ccc04223ef92e6b30e817f833a6970a0a702c19a5d5ce05899b21b error: Error response from daemon: OCI runtime create failed: container_linux.go:349: starting container process caused "exec: \"date && python /spt/apps/main.py 20200605\": stat date && python /spt/apps/main.py 20200605: no such file or directory": unknown
+2020-06-15T20:14:51.081+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T20:36:23.733+0800	INFO	server/main.go:40	iCloud server started
+2020-06-15T20:44:21.858+0800	INFO	server/main.go:40	iCloud server started
+2020-06-16T09:46:30.181+0800	ERROR	apps/docker.go:301	apps.docker.startContainer() error, start container 77191fa826d204a0cd493793b58a94b0283ed2b3538e908846de2c7716f9a9c2 error: Error response from daemon: OCI runtime create failed: container_linux.go:349: starting container process caused "exec: \"date && which python && python /spt/apps/main.py 20200605\": stat date && which python && python /spt/apps/main.py 20200605: no such file or directory": unknown
+2020-06-16T16:14:27.365+0800	INFO	server/main.go:40	iCloud server started
+2020-06-16T16:32:28.936+0800	INFO	server/main.go:40	iCloud server started
+2020-06-16T16:39:56.027+0800	ERROR	rpcServer/entryPointScriptCreate.go:28	rpcServer.entryPointScriptCreate() error, call client 192.168.0.100:19876 to create entry point script by grpc error: rpc error: code = Internal desc = grpc: error while marshaling: proto: Marshal called with nil
+2020-06-16T16:52:45.618+0800	INFO	server/main.go:40	iCloud server started
+2020-06-16T16:54:32.094+0800	ERROR	rpcServer/entryPointScriptCreate.go:29	rpcServer.entryPointScriptCreate() error, call client 192.168.0.100:19876 to create entry point script by grpc error: rpc error: code = Internal desc = grpc: error while marshaling: proto: Marshal called with nil

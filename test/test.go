@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"path"
+)
 
 type T struct {
 	name string
@@ -9,13 +12,9 @@ type T struct {
 }
 
 func main() {
-	t := new(T)
-	test(t)
-	fmt.Println(t)
+	dir := "/usr/"
+	f := "test"
+	fmt.Println(path.Join(dir, f))
 }
 
-func test(t *T) {
-	if t.name == "" {
-		t.name = "yinuo"
-	}
-}
+

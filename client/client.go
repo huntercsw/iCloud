@@ -39,6 +39,7 @@ type Host struct {
 	TotalDisk int    `json:"totalDisk"`
 	FreeDisk  int    `json:"freeDisk"`
 	Heartbeat int64  `json:"heartbeat"` // current  timestamp
+	GrpcPort  string `json:"grpcPort"`	// grpc server listen on
 }
 
 func init() {
@@ -106,6 +107,7 @@ func (h *Host) Refresh() {
 		}
 	}
 	h.Heartbeat = time.Now().Unix()
+	h.GrpcPort = Conf.RpcPort
 }
 
 func (h *Host) sumDisk(partitions *[]disk.PartitionStat) {
@@ -138,6 +140,7 @@ func (h *Host) empty() {
 	h.FreeMem = ""
 	h.TotalDisk = 0
 	h.FreeDisk = 0
+	h.GrpcPort = ""
 }
 
 func hostRegister() {
@@ -174,10 +177,16 @@ func main() {
 	HostInfo = new(Host)
 
 	go func() {
+		defer wg.Done()
 		for {
 			hostRegister()
 			time.Sleep(time.Second * 3)
 		}
+	}()
+
+	go func() {
+		defer wg.Done()
+		RunRpcServer()
 	}()
 
 	wg.Wait()

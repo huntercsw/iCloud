@@ -12,3 +12,5 @@
 2020-06-08T16:51:44.694+0800	ERROR	client/client.go:158	client.HostRegister() error, 192.168.1.151 put to etcd error: etcdserver: request timed out
 2020-06-09T12:05:08.382+0800	INFO	client/client.go:163	iCloud Client started
 2020-06-10T11:59:50.103+0800	INFO	client/client.go:163	iCloud Client started
+2020-06-15T19:23:16.697+0800	INFO	client/client.go:163	iCloud Client started
+2020-06-16T17:19:40.436+0800	INFO	client/client.go:166	iCloud Client started

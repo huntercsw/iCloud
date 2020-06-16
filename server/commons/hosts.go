@@ -1,9 +1,5 @@
 package commons
 
-import (
-	"github.com/coreos/etcd/clientv3"
-)
-
 type Host struct {
 	HostName  string `json:"hostName"`
 	OS        string `json:"os"`
@@ -16,8 +12,6 @@ type Host struct {
 	TotalDisk int    `json:"totalDisk"`
 	FreeDisk  int    `json:"freeDisk"`
 	Heartbeat int64  `json:"heartbeat"`		// current  timestamp
+	GrpcPort  string `json:"grpcPort"`
 }
 
-func HostHeartbeat(cli *clientv3.Client) {
-
-}

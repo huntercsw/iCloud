@@ -10,4 +10,5 @@
     <etcd>192.168.0.100:2379</etcd>             <!--etcd endpoints-->
     <etcd>192.168.0.110:2379</etcd>
     <mongo>192.168.1.151:27017</mongo>          <!--mongoDB-->
+    <rpcPort></rpcPort>
 </ClientConf>
