@@ -5,6 +5,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/docker/docker/api"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/strslice"
@@ -38,6 +39,7 @@ type ContainerConfiguration struct {
 	Pwd           string   `json:"workingDir"`
 	ClientIp      string   `json:"clientIp"`
 	RpcPort       string   `json:"rpcPort"`
+	Gpus          string   `json:"gpus"`
 }
 
 func (conf *ContainerConfiguration) confCheck() (err error) {
@@ -116,7 +118,14 @@ func DockerApiCliPoolAdd(ip, port string) (err error) {
 	}
 
 	// host: it need remote docker server open remote API, edit configuration "/usr/lib/systemd/system/docker.service"
-	if cli, err = client.NewClient("tcp://"+ip+":"+port, client.DefaultVersion, nil, nil); err != nil {
+	//if cli, err = client.NewClient("tcp://"+ip+":"+port, client.DefaultVersion, nil, nil); err != nil {
+	//	log.Logger.Errorf("%s error, create docker api client to %s:%s error: %v", m, ip, port, err)
+	//	return
+	//}
+	if cli, err = client.NewClientWithOpts(
+		client.WithVersion(api.DefaultVersion),
+		client.WithHost("tcp://"+ip+":"+port),
+	); err != nil {
 		log.Logger.Errorf("%s error, create docker api client to %s:%s error: %v", m, ip, port, err)
 		return
 	}
@@ -132,7 +141,7 @@ func DockerApiCliMapDelete(ip string) {
 	}
 }
 
-func DockerApiCliMapReconnect(ip string) (err error) {
+func DockerApiCliMapReconnect(ip, port string) (err error) {
 	var (
 		m   = "apps.docker.DockerApiCliMapReconnect()"
 		cli *client.Client
@@ -141,8 +150,15 @@ func DockerApiCliMapReconnect(ip string) (err error) {
 		DockerApiCliMap[ip].Close()
 	}
 
-	if cli, err = client.NewClient("tcp://"+ip, client.DefaultVersion, nil, nil); err != nil {
-		log.Logger.Errorf("%s error, create docker api client to %s error: %v", m, ip, err)
+	//if cli, err = client.NewClient("tcp://"+ip, client.DefaultVersion, nil, nil); err != nil {
+	//	log.Logger.Errorf("%s error, create docker api client to %s error: %v", m, ip, err)
+	//	return
+	//}
+	if cli, err = client.NewClientWithOpts(
+		client.WithVersion(api.DefaultVersion),
+		client.WithHost("tcp://"+ip+":"+port),
+	); err != nil {
+		log.Logger.Errorf("%s error, create docker api client to %s:%s error: %v", m, ip, port, err)
 		return
 	}
 
@@ -261,6 +277,7 @@ func resourceConfInit(conf *ContainerConfiguration) (resourceConf *container.Res
 		cpuPeriod = float64(100000)
 		cpuQuota  float64
 		m         = "apps.docker.resourceConfInit()"
+		gpus int
 	)
 
 	if mem, err = strconv.ParseFloat(conf.MaxMem, 64); err != nil {
@@ -273,11 +290,27 @@ func resourceConfInit(conf *ContainerConfiguration) (resourceConf *container.Res
 		return
 	}
 
-	return &container.Resources{
+	resourceConf = &container.Resources{
 		Memory:    int64(mem * float64(commons.GB)),
 		CPUPeriod: int64(cpuPeriod),
 		CPUQuota:  int64(cpuQuota * cpuPeriod),
-	}, nil
+	}
+
+	// Gpu config
+	if gpus, err = strconv.Atoi(conf.Gpus); err != nil {
+		log.Logger.Errorf("%s error, count of gpu to int error: %v", m, err)
+		return
+	} else {
+		if gpus > 0 {
+			devReq := make([]container.DeviceRequest, 0)
+			devReq = append(devReq, container.DeviceRequest{Capabilities: [][]string{{"gpu"}}, Count:gpus})
+			//TODO other config
+			//
+			resourceConf.DeviceRequests = devReq
+		}
+	}
+
+	return resourceConf, nil
 }
 
 func createContainer(cli *client.Client, conf *ContainerConfiguration) (containerId string, err error) {

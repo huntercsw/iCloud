@@ -5,6 +5,7 @@ go 1.13
 require (
 	github.com/Microsoft/go-winio v0.4.14 // indirect
 	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
+	github.com/containerd/containerd v1.3.4 // indirect
 	github.com/coreos/etcd v3.3.22+incompatible
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf // indirect
@@ -29,6 +30,7 @@ require (
 	github.com/jonboulle/clockwork v0.1.0 // indirect
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/opencontainers/go-digest v1.0.0 // indirect
+	github.com/opencontainers/image-spec v1.0.1 // indirect
 	github.com/prometheus/client_golang v1.6.0 // indirect
 	github.com/shirou/gopsutil v2.20.5+incompatible // indirect
 	github.com/soheilhy/cmux v0.1.4 // indirect
@@ -46,5 +48,6 @@ require (
 
 replace (
 	github.com/coreos/bbolt v1.3.4 => go.etcd.io/bbolt v1.3.4
+	github.com/docker/docker v1.13.1 => github.com/docker/engine v17.12.0-ce-rc1.0.20200514230353-811a247d06e8+incompatible
 	google.golang.org/grpc => google.golang.org/grpc v1.26.0
 )

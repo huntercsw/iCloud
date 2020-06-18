@@ -106,3 +106,5 @@ Try `iptables -h' or 'iptables --help' for more information.
 2020-06-16T16:39:56.027+0800	ERROR	rpcServer/entryPointScriptCreate.go:28	rpcServer.entryPointScriptCreate() error, call client 192.168.0.100:19876 to create entry point script by grpc error: rpc error: code = Internal desc = grpc: error while marshaling: proto: Marshal called with nil
 2020-06-16T16:52:45.618+0800	INFO	server/main.go:40	iCloud server started
 2020-06-16T16:54:32.094+0800	ERROR	rpcServer/entryPointScriptCreate.go:29	rpcServer.entryPointScriptCreate() error, call client 192.168.0.100:19876 to create entry point script by grpc error: rpc error: code = Internal desc = grpc: error while marshaling: proto: Marshal called with nil
+2020-06-17T17:04:34.260+0800	INFO	server/main.go:40	iCloud server started
+2020-06-17T17:31:17.195+0800	INFO	server/main.go:40	iCloud server started

@@ -41,5 +41,6 @@ require (
 
 replace (
 	github.com/coreos/bbolt v1.3.4 => go.etcd.io/bbolt v1.3.4
+	github.com/docker/docker v1.13.1 => github.com/docker/engine v17.12.0-ce-rc1.0.20200514230353-811a247d06e8+incompatible
 	google.golang.org/grpc => google.golang.org/grpc v1.26.0
 )
