@@ -26,5 +26,11 @@ func ICloudRouter(r *gin.Engine) {
 	{
 		DockerLogRouters.POST("/:id/:ip/:port", apps.ContainerLogs)
 	}
+
+	FileUpLoadRouter := r.Group("/iCloudApi/file/upload")
+	{
+		FileUpLoadRouter.POST("/webUploader", apps.FileUpload)
+		FileUpLoadRouter.POST("/webUploader/merge", apps.BlockFileMerge)
+	}
 }
 

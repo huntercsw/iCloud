@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="dependents/assets/images/favicon.png">
+    <title>AdminBite admin Template - The Ultimate Multipurpose admin template</title>
+	
+	<!-- Sweet Alert-->
+	<link href="dependents/assets/libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+	<!-- bootstrap-table-->
+	<link href="dependents/assets/plugins/bootstrap-table-v4/bootstrap-table.min.css" rel="stylesheet"/>
+    <!-- Custom CSS -->
+    <link href="dependents/dist/css/style.min.css" rel="stylesheet">
+	<link href="js/webuploader-0.1.5/webuploader.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+   <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header">
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
+                        <i class="ti-menu ti-close"></i>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="index.html">
+						<!-- Logo icon -->
+                        <b class="logo-icon">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="dependents/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="dependents/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span class="logo-text">
+                            <!-- dark Logo text -->
+                            <img src="dependents/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo text -->
+                            <img src="dependents/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                        </span>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- Toggle which is visible on mobile only -->
+                    <!-- ============================================================== -->
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="ti-more"></i>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-left mr-auto">
+                        <li class="nav-item d-none d-md-block">
+                            <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar">
+                                <i class="sl-icon-menu font-20"></i>
+                            </a>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- mega menu -->
+                        <!-- ============================================================== -->
+  
+  
+                        <!-- ============================================================== -->
+                        <!-- End mega menu -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+
+						
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+
+						
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+
+
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+					<ul class="navbar-nav float-right">
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <span name="user_name_setter" class="rounded-circle" width="31">user</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                <span class="with-arrow">
+                                    <span class="bg-primary"></span>
+                                </span>
+                                <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
+                                    <div class="">
+                                        <span>当前用户: </span>
+                                    </div>
+                                    <div class="m-l-10">
+                                        <h4 class="m-b-0" name="user_name_setter" id="user_name">user</h4>
+                                    </div>
+                                </div>
+								
+                                <a class="dropdown-item" href="password_modify.html">
+                                    <i class="ti-settings m-r-5 m-l-5"></i> 修改密码</a>
+                                <div class="dropdown-divider"></div>
+								
+                                <a class="dropdown-item" href="javascript:void(0)" onclick="logout()">
+                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> 退  出</a>
+                                <div class="dropdown-divider"></div>
+                                <div class="p-l-30 p-10">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">BACK</a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+
+						<li class="sidebar-item">
+                            <a class="sidebar-link" href="index.html">
+                                <i class="fas fa-server"></i>
+                                <span class="hide-menu">Host List </span>
+                            </a>
+                        </li>
+						
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-5 align-self-center">
+                        <h4 class="page-title">iCloud Container Configuration</h4>
+                        <div class="d-flex align-items-center">
+
+                        </div>
+                    </div>
+                    <div class="col-7 align-self-center">
+                        <div class="d-flex no-block justify-content-end align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+										<a href="javascript:void(0)" onclick="goto_container_list()">Containers</a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">ContainerConfig</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+				<div id="uploader" class="wu-example">
+    <!--用来存放文件信息-->
+    <div id="thelist" class="uploader-list"></div>
+    <div class="btns">
+        <div id="picker">选择文件</div>
+        <button id="ctlBtn" class="btn btn-default">开始上传</button>
+    </div>
+	
+    <div class="progress">         <!-- 进度条 -->
+            <div class="progress-bar progress-bar-striped active" role="progressbar" style="width:0%;"></div>
+        </div>
+</div>
+                <!-- row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+       All Rights Reserved by AdminBite admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+</footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+
+    
+    <div class="chat-windows"></div>
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="dependents/assets/libs/jquery/dist/jquery.min.js"></script>
+	<!-- SweetAlert2 -->
+	<script src="dependents/assets/libs/sweetalert2/dist/sweetalert2.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="dependents/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="dependents/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- bootstrap-table -->
+	<script src="dependents/assets/plugins/bootstrap-table-v4/bootstrap-table.min.js"></script>
+	<script src="dependents/assets/plugins/bootstrap-table-v4/bootstrap-table-zh-CN.min.js"></script>
+    <!-- apps -->
+    <script src="dependents/dist/js/app.min.js"></script>
+    <script src="dependents/dist/js/app.init.js"></script>
+    <script src="dependents/dist/js/app-style-switcher.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="dependents/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="dependents/assets/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="dependents/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="dependents/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="dependents/dist/js/custom.min.js"></script>
+
+	<!--This page JavaScript -->
+    <script src="dependents/assets/libs/jquery.repeater/jquery.repeater.min.js"></script>
+    <script src="js/webuploader-0.1.5/webuploader.nolog.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var $list = $('#thelist'),
+				$btn = $('#ctlBtn'),
+				state = 'pending';
+		
+			var task_id = WebUploader.Base.guid();        //产生task_id
+			var uploader = WebUploader.create({           //创建上传控件
+				//swf: 'https://cdn.staticfile.org/webuploader/0.1.1/Uploader.swf', //swf位置，这个可能与flash有关
+				server: '/iCloudApi/file/upload/webUploader',                 //接收每一个分片的服务器地址
+				pick: '#picker',                          //填上传按钮的id选择器值
+				//auto: true,                               //选择文件后，是否自动上传
+				chunked: true,                            //是否分片
+				chunkSize: 10 * 1024 * 1024,              //每个分片的大小，这里为10M
+				chunkRetry: 2,                            //某分片若上传失败，重试次数
+				threads: 1,                               //线程数量，考虑到服务器，这里就选了1,  单线程上传，服务端会按顺序接收
+				duplicate: true,                          //分片是否自动去重
+				formData: {                               //每次上传分片，一起携带的数据
+					task_id: task_id,
+				},
+			});
+			
+			// 当有文件被添加进队列的时候
+			uploader.on( 'fileQueued', function( file ) {
+				$list.append( '<div id="' + file.id + '" class="item">' +
+					'<h4 class="info">' + file.name + '</h4>' +
+					'<p class="state">等待上传...</p>' +
+				'</div>' );
+			})
+			
+			$btn.on( 'click', function() {
+				if ( state === 'uploading' ) {
+					uploader.stop();
+				} else {
+					uploader.upload();
+				}
+			});
+			
+			// 文件上传过程中创建进度条实时显示。uploadPorgess函数，是每个分片上传成功后会被调用
+			uploader.on('uploadProgress', function( file, percentage ) {
+				var $li = $( '#'+file.id ),
+					$percent = $li.find('.progress .progress-bar');
+
+				// 避免重复创建
+				if ( !$percent.length ) {
+					$percent = $('<div class="progress progress-striped active">' +
+					  '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+					  '</div>' +
+					'</div>').appendTo( $li ).find('.progress-bar');
+				}
+
+				$li.find('p.state').text('上传中');
+
+				$percent.css( 'width', percentage * 100 + '%' );
+			})
+	 
+			// 整个文件上传成功后会被调用
+			uploader.on( 'uploadSuccess', function( file, response ) {
+				if (response.ErrorCode != 0) {
+					alert("ErrorCode: " + response.ErrorCode +";  ErrorMessage: " + response.Data )
+				} else {
+					console.log(file)
+					$.ajax({
+						url: "/iCloudApi/file/upload/webUploader/merge",
+						type: "post",
+						async:false,
+						dataType: "json",
+						data:JSON.stringify({"fileName": file.id, "task_id": task_id}),
+						success: function(res){
+							switch (res.ErrorCode) {
+								case 0:
+									break;
+								default:
+									alert("ErrorCode: " + res.ErrorCode + "; ErrorMessage: " + res.Data)
+									break;
+							}
+						}
+					})
+				}
+				$( '#'+file.id ).find('p.state').text('上传成功');
+			});
+
+			// /上传过程中发生异常，调用该方法
+			uploader.on( 'uploadError', function( file ) {
+				$( '#'+file.id ).find('p.state').text('上传失败，请联系管理员');
+			});
+
+			// //上传结束，无论文件最终是否上传成功，该方法都会被调用
+			uploader.on( 'uploadComplete', function( file ) {
+				$( '#'+file.id ).find('.progress').fadeOut();
+			});
+
+			uploader.on( 'all', function( type ) {
+				if ( type === 'startUpload' ) {
+					state = 'uploading';
+				} else if ( type === 'stopUpload' ) {
+					state = 'paused';
+				} else if ( type === 'uploadFinished' ) {
+					state = 'done';
+				}
+
+				if ( state === 'uploading' ) {
+					$btn.text('暂停上传');
+				} else {
+					$btn.text('开始上传');
+				}
+			});
+		 
+		});
+
+	</script>
+</body>
+
+</html>

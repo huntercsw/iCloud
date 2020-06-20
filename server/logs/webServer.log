@@ -13,25 +13,8 @@
 [GIN-debug] DELETE /iCloudApi/containers/remove/:id/:ip/:port/:rPort --> iCloud/apps.ContainerRemove (3 handlers)
 [GIN-debug] GET    /iCloudApi/containers/detail/:id/:ip/:port/:rPort --> iCloud/apps.ContainerDetail (3 handlers)
 [GIN-debug] POST   /iCloudApi/logs/:id/:ip/:port --> iCloud/apps.ContainerLogs (3 handlers)
+[GIN-debug] POST   /iCloudApi/file/upload/webUploader --> iCloud/apps.FileUpload (3 handlers)
+[GIN-debug] POST   /iCloudApi/file/upload/webUploader/merge --> iCloud/apps.BlockFileMerge (3 handlers)
 [GIN-debug] Listening and serving HTTP on 0.0.0.0:7890
-[GIN] 2020/06/17 - 17:31:22 | 200 |      3.0007ms |   192.168.1.151 | GET      "/iCloudApi/hosts/list"
-[GIN] 2020/06/17 - 17:31:25 | 200 |       14.96ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
-[GIN] 2020/06/17 - 17:31:27 | 200 |     10.9705ms |   192.168.1.151 | GET      "/iCloudApi/containers/lsImage?ip=192.168.0.100&port=7777"
-[GIN] 2020/06/17 - 17:31:31 | 200 |      3.0005ms |   192.168.1.151 | GET      "/iCloudApi/containers/detail/a9a4e9a98715a5f3bfa7559c8390fe651729785175f54ddd48a33b6d2f7b513b/192.168.0.100/7777/19876"
-[GIN] 2020/06/17 - 17:31:41 | 200 |      2.0042ms |   192.168.1.151 | POST     "/iCloudApi/logs/a9a4e9a98715a5f3bfa7559c8390fe651729785175f54ddd48a33b6d2f7b513b/192.168.0.100/7777"
-[GIN] 2020/06/17 - 17:32:05 | 200 |     55.8492ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
-[GIN] 2020/06/17 - 17:32:15 | 200 |    274.2905ms |   192.168.1.151 | PUT      "/iCloudApi/containers/stop/a9a4e9a98715a5f3bfa7559c8390fe651729785175f54ddd48a33b6d2f7b513b/192.168.0.100/7777/19876"
-[GIN] 2020/06/17 - 17:32:15 | 200 |       2.992ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
-[GIN] 2020/06/17 - 17:32:18 | 200 |      7.0088ms |   192.168.1.151 | DELETE   "/iCloudApi/containers/remove/a9a4e9a98715a5f3bfa7559c8390fe651729785175f54ddd48a33b6d2f7b513b/192.168.0.100/7777/19876"
-[GIN] 2020/06/17 - 17:32:18 | 200 |      2.9923ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
-[GIN] 2020/06/17 - 17:32:31 | 200 |      11.007ms |   192.168.1.151 | GET      "/iCloudApi/containers/detail/057d7fdfc21cd1098adf75b5ced0a2d37b808495717fa261dfe48ce9d7ae2d1c/192.168.0.100/7777/19876"
-[GIN] 2020/06/17 - 17:33:13 | 200 |     465.811ms |   192.168.1.151 | PUT      "/iCloudApi/containers/start/057d7fdfc21cd1098adf75b5ced0a2d37b808495717fa261dfe48ce9d7ae2d1c/192.168.0.100/7777/19876"
-[GIN] 2020/06/17 - 17:33:13 | 200 |      2.9818ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
-[GIN] 2020/06/17 - 17:33:15 | 200 |      3.9249ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
-[GIN] 2020/06/17 - 17:33:24 | 200 |     12.9639ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
-[GIN] 2020/06/17 - 17:33:31 | 200 |     70.9758ms |   192.168.1.151 | POST     "/iCloudApi/logs/057d7fdfc21cd1098adf75b5ced0a2d37b808495717fa261dfe48ce9d7ae2d1c/192.168.0.100/7777"
-[GIN] 2020/06/17 - 17:33:51 | 200 |     11.9679ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
-[GIN] 2020/06/17 - 17:33:54 | 200 |      5.9613ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
-[GIN] 2020/06/17 - 17:34:37 | 200 |    187.6827ms |   192.168.1.151 | PUT      "/iCloudApi/containers/stop/057d7fdfc21cd1098adf75b5ced0a2d37b808495717fa261dfe48ce9d7ae2d1c/192.168.0.100/7777/19876"
-[GIN] 2020/06/17 - 17:34:37 | 200 |      2.9926ms |   192.168.1.151 | GET      "/iCloudApi/containers/list?ip=192.168.0.100&port=7777"
-[GIN] 2020/06/17 - 18:22:55 | 200 |      1.9947ms |   192.168.1.151 | GET      "/iCloudApi/containers/detail/8bda3fa3b094978876f10c05baeef0a444902d6dc15017e8196e23fb603280ef/192.168.0.100/7777/19876"
+[GIN] 2020/06/19 - 20:53:59 | 308 |     63.8348ms |   192.168.1.151 | POST     "/iCloudApi/file/upload/webUploader"
+[GIN] 2020/06/19 - 20:56:05 | 308 |         995µs |   192.168.1.151 | POST     "/iCloudApi/file/upload/webUploader"

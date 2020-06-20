@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"path"
+)
 
 type T struct {
 	name string
@@ -9,11 +12,8 @@ type T struct {
 }
 
 func main() {
-	var s [][]string
-
-	s = [][]string{{"yinuo", "yinuo"}}
-
-	fmt.Println(s)
+	var s1, s2, s3 = "test", "yinuo", "abc"
+	fmt.Println(path.Join(s1, s2, s3))
 }
 
 
