@@ -158,3 +158,9 @@ Try `iptables -h' or 'iptables --help' for more information.
 2020-06-19T20:50:14.861+0800	INFO	server/main.go:40	iCloud server started
 2020-06-19T20:53:59.337+0800	ERROR	apps/webUploader.go:175	apps.webUploader.removeDir() error, remove old file[D:/go_project/iCloud/uploadTemp/wu_1eb69vj81aq81b3eve9pvb18hj0] in D:/go_project/iCloud/uploadTemp error: remove D:/go_project/iCloud/uploadTemp/wu_1eb69vj81aq81b3eve9pvb18hj0: The directory is not empty.
 2020-06-19T20:56:05.962+0800	ERROR	apps/webUploader.go:175	apps.webUploader.removeDir() error, remove old file[D:/go_project/iCloud/uploadTemp/wu_1eb69vj81aq81b3eve9pvb18hj0] in D:/go_project/iCloud/uploadTemp error: remove D:/go_project/iCloud/uploadTemp/wu_1eb69vj81aq81b3eve9pvb18hj0: The directory is not empty.
+2020-06-20T14:32:08.289+0800	INFO	server/main.go:40	iCloud server started
+2020-06-20T14:32:45.009+0800	INFO	server/main.go:40	iCloud server started
+2020-06-20T14:34:27.937+0800	INFO	server/main.go:41	iCloud server started
+2020-06-20T14:35:39.376+0800	INFO	server/main.go:41	iCloud server started
+2020-06-20T14:35:58.757+0800	INFO	server/main.go:45	iCloud server closed
+2020-06-20T14:38:39.539+0800	INFO	server/main.go:41	iCloud server started

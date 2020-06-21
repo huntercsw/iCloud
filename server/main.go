@@ -10,6 +10,7 @@ import (
 	"iCloud/log"
 	"io"
 	"os"
+	"os/signal"
 	"strconv"
 	"time"
 )
@@ -56,5 +57,10 @@ func main() {
 
 	ICloudRouter(ginEngine)
 
-	ginEngine.Run(conf.Iconf.Ip + ":" + strconv.Itoa(conf.Iconf.Port))
+	go ginEngine.Run(conf.Iconf.Ip + ":" + strconv.Itoa(conf.Iconf.Port))
+
+	c := make(chan os.Signal)
+	signal.Notify(c, os.Interrupt, os.Kill)
+	s := <-c
+	fmt.Println(s)
 }

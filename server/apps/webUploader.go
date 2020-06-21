@@ -23,16 +23,18 @@ func FileUpload(ctx *gin.Context) {
 	var (
 		multiForm    *multipart.Form
 		taskId       = ctx.PostForm("task_id")
-		chunkId      = ctx.PostForm("chunk")
+		//chunkId      = ctx.PostForm("chunk")
+		blockNum      = ctx.PostForm("chunks")
 		files        []*multipart.FileHeader
 		fileName     string
-		tempFilename string
+		//tempFilename string
 		rsp          = make(gin.H)
 		err          error
 		exist        bool
 		m            = "apps.webUploader.FileUpload()"
 		httpStatus   int
 	)
+
 	if multiForm, err = ctx.MultipartForm(); err != nil {
 		log.Logger.Errorf("%s error, get file in post request error: %v", m, err)
 		// 一些 Web 应用可能会将 308 Permanent Redirect 以一种非标准的方式使用以及用作其他用途。
@@ -55,18 +57,20 @@ func FileUpload(ctx *gin.Context) {
 
 	fileName = files[0].Filename
 
-	if err = createDir(path.Join(UPLOAD_TEMP_DIR, taskId)); err != nil {
-		httpStatus = 308
-		goto RESPONSE
-	}
+	fmt.Printf("%s--%s--%s--%s\n", fileName, taskId, blockNum, taskId)
 
-	tempFilename = path.Join(UPLOAD_TEMP_DIR, taskId, fmt.Sprintf("%s-%s", fileName, chunkId))
-
-	if err = ctx.SaveUploadedFile(files[0], tempFilename); err != nil {
-		log.Logger.Errorf("%s, error: save file[%s] which upload by webUploader error: %v", m, fileName, err)
-		httpStatus = 308
-		goto RESPONSE
-	}
+	//if err = createDir(path.Join(UPLOAD_TEMP_DIR, taskId)); err != nil {
+	//	httpStatus = 308
+	//	goto RESPONSE
+	//}
+	//
+	//tempFilename = path.Join(UPLOAD_TEMP_DIR, taskId, fmt.Sprintf("%s-%s", fileName, chunkId))
+	//
+	//if err = ctx.SaveUploadedFile(files[0], tempFilename); err != nil {
+	//	log.Logger.Errorf("%s, error: save file[%s] which upload by webUploader error: %v", m, fileName, err)
+	//	httpStatus = 308
+	//	goto RESPONSE
+	//}
 
 	httpStatus, rsp["ErrorCode"], rsp["Data"] = http.StatusOK, 0, struct{}{}
 

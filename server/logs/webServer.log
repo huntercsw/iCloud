@@ -16,5 +16,3 @@
 [GIN-debug] POST   /iCloudApi/file/upload/webUploader --> iCloud/apps.FileUpload (3 handlers)
 [GIN-debug] POST   /iCloudApi/file/upload/webUploader/merge --> iCloud/apps.BlockFileMerge (3 handlers)
 [GIN-debug] Listening and serving HTTP on 0.0.0.0:7890
-[GIN] 2020/06/19 - 20:53:59 | 308 |     63.8348ms |   192.168.1.151 | POST     "/iCloudApi/file/upload/webUploader"
-[GIN] 2020/06/19 - 20:56:05 | 308 |         995µs |   192.168.1.151 | POST     "/iCloudApi/file/upload/webUploader"
