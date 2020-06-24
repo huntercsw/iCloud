@@ -1,6 +1,7 @@
 package apps
 
 import (
+	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"iCloud/log"
@@ -12,8 +13,8 @@ import (
 	"strconv"
 )
 
-const (
-	UPLOAD_TEMP_DIR = "D:/go_project/iCloud/uploadTemp"
+var (
+	UploadTempDir = "D:/go_project/iCloud/uploadTemp"
 )
 
 // upload file by plugin webUploader on browser
@@ -23,11 +24,13 @@ func FileUpload(ctx *gin.Context) {
 	var (
 		multiForm    *multipart.Form
 		taskId       = ctx.PostForm("task_id")
-		//chunkId      = ctx.PostForm("chunk")
-		blockNum      = ctx.PostForm("chunks")
+		chunkId      = ctx.PostForm("chunk")
+		blockNum     = ctx.PostForm("chunks")
+		n, sum       int
 		files        []*multipart.FileHeader
 		fileName     string
-		//tempFilename string
+		tempDir      string
+		tempFileName string
 		rsp          = make(gin.H)
 		err          error
 		exist        bool
@@ -57,20 +60,55 @@ func FileUpload(ctx *gin.Context) {
 
 	fileName = files[0].Filename
 
-	fmt.Printf("%s--%s--%s--%s\n", fileName, taskId, blockNum, taskId)
+	fmt.Printf("%s--%s--%s--%s\n", fileName, taskId, blockNum, chunkId)
 
-	//if err = createDir(path.Join(UPLOAD_TEMP_DIR, taskId)); err != nil {
-	//	httpStatus = 308
-	//	goto RESPONSE
-	//}
-	//
-	//tempFilename = path.Join(UPLOAD_TEMP_DIR, taskId, fmt.Sprintf("%s-%s", fileName, chunkId))
-	//
-	//if err = ctx.SaveUploadedFile(files[0], tempFilename); err != nil {
-	//	log.Logger.Errorf("%s, error: save file[%s] which upload by webUploader error: %v", m, fileName, err)
-	//	httpStatus = 308
-	//	goto RESPONSE
-	//}
+	tempDir = path.Join(UploadTempDir, fileName+"--"+taskId)
+	if (blockNum == "" && chunkId == "") || chunkId == "0" {
+		if err = createDir(tempDir); err != nil {
+			log.Logger.Errorf("create dir %s error", tempDir)
+			httpStatus = 308
+			goto RESPONSE
+		}
+	}
+
+	if blockNum == "" && chunkId == "" {
+		tempFileName = path.Join(tempDir, fileName)
+		if err = ctx.SaveUploadedFile(files[0], path.Join(tempDir, fileName)); err != nil {
+			log.Logger.Errorf("storage no chunked file %s error: %v", tempFileName, err)
+			httpStatus = 308
+			goto RESPONSE
+		}
+	} else {
+		tempFileName = path.Join(tempDir, fileName + "--" + chunkId)
+		if err = ctx.SaveUploadedFile(files[0], tempFileName); err != nil {
+			log.Logger.Errorf("storage chunked file %s error: %v", tempFileName, err)
+			httpStatus = 308
+			goto RESPONSE
+		}
+		if n, err = strconv.Atoi(chunkId); err != nil {
+			log.Logger.Errorf("chunkId [%s] to int error: %v", chunkId, err)
+			httpStatus = 308
+			goto RESPONSE
+		}
+		if sum, err = strconv.Atoi(blockNum); err != nil {
+			log.Logger.Errorf("sum of block [%s] to int error: %v", blockNum, err)
+			httpStatus = 308
+			goto RESPONSE
+		}
+
+		if n + 1 == sum {
+			if err = blockMerge(fileName, taskId, sum); err != nil {
+				log.Logger.Errorf("merge file %s error: %v", fileName, err)
+				httpStatus = 308
+				goto RESPONSE
+			}
+		}
+	}
+
+	if err = storageFileTo(path.Join(tempDir, fileName)); err != nil {
+		httpStatus = 308
+		goto RESPONSE
+	}
 
 	httpStatus, rsp["ErrorCode"], rsp["Data"] = http.StatusOK, 0, struct{}{}
 
@@ -78,73 +116,44 @@ RESPONSE:
 	ctx.JSON(httpStatus, rsp)
 }
 
-// blockNum is number of block file
+// sumBlock is number of block file
 // fileName is file name of upload, and it is the name of merged file
 // taskId is created by webUploader
-func BlockFileMerge(ctx *gin.Context) {
+func blockMerge(fileName, taskId string, sumBlock int) (err error) {
 	var (
-		taskId          = ctx.PostForm("task_id")
-		fileName        = ctx.PostForm("fileName")
-		file, blockFile *os.File
-		files           []os.FileInfo
-		m               = "apps.webUpload.BlockFileMerge()"
-		blockContent    = new([]byte)
-		err             error
-		rsp             = make(gin.H)
+		finalFile, blockFile *os.File
+		finalFileName = path.Join(UploadTempDir, fileName + "--" + taskId, fileName)
+		blockContent []byte
 	)
-	finalFileName := path.Join(UPLOAD_TEMP_DIR, taskId, fileName)
-	fmt.Println(finalFileName)
-	if files, err = ioutil.ReadDir(path.Join(UPLOAD_TEMP_DIR, taskId)); err != nil {
-		log.Logger.Errorf("%s error, create file which is used to merge upload block file error: %v", m, err)
-		rsp["ErrorCode"], rsp["Data"] = 1, "block file merge error"
-	}
-	switch {
-	case len(files) == 1:
-		if err = os.Rename(path.Join(UPLOAD_TEMP_DIR, taskId, files[0].Name()), finalFileName); err != nil {
-			log.Logger.Errorf("%s error, rename file[%s] error: %v", m, finalFileName, err)
-			rsp["ErrorCode"], rsp["Data"] = 1, "block file merge error"
-			goto RESPONSE
-		}
-	case len(files) > 1:
-		if file, err = os.OpenFile(finalFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, os.ModePerm); err != nil {
-			log.Logger.Errorf("%s error, create final file which is used to merge upload block file error: %v", m, err)
-			rsp["ErrorCode"], rsp["Data"] = 1, "block file merge error"
-			goto RESPONSE
-		}
-		defer file.Close()
 
-		for i := 0; i < len(files); i++ {
-			blockName := path.Join(UPLOAD_TEMP_DIR, taskId, fmt.Sprintf("%s-%s", fileName, strconv.Itoa(i)))
-			if blockFile, err = os.OpenFile(blockName, os.O_RDONLY, os.ModePerm, ); err != nil {
-				log.Logger.Errorf("%s error, open block file[%s] to merge error: %v", m, blockName, err)
-				rsp["ErrorCode"], rsp["Data"] = 1, "block file merge error"
-				goto RESPONSE
-			}
-			if *blockContent, err = ioutil.ReadAll(blockFile); err != nil {
-				log.Logger.Errorf("%s error, read block file[%s] to final file error: %v", m, blockName, err)
-				rsp["ErrorCode"], rsp["Data"] = 1, "block file merge error"
-				return
-			}
-			blockFile.Close()
-			if _, err = file.Write(*blockContent); err != nil {
-				log.Logger.Errorf("%s error, write block file[%s] to final file error: %v", m, blockName, err)
-				rsp["ErrorCode"], rsp["Data"] = 1, "block file merge error"
-				goto RESPONSE
-			}
-			if err = os.Remove(blockName); err != nil {
-				log.Logger.Errorf("%s error, remove block[%s] error: %v", m, blockName, err)
-				rsp["ErrorCode"], rsp["Data"] = 1, "block file merge error"
-				goto RESPONSE
-			}
+	if finalFile, err = os.OpenFile(finalFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, os.ModePerm); err != nil {
+		log.Logger.Errorf("create final file[%s] used to merge blocks error: %v", finalFileName, err)
+		return errors.New("create final file error")
+	}
+	defer finalFile.Close()
+
+	for chunkId := 0; chunkId < sumBlock; chunkId++ {
+		blockFileName := finalFileName + "--" + strconv.Itoa(chunkId)
+		if blockFile, err = os.OpenFile(blockFileName, os.O_RDONLY, os.ModePerm, ); err != nil {
+			log.Logger.Errorf("open block file[%s] error: %v", blockFileName, err)
+			return errors.New(fmt.Sprintf("open block file[%s] error", blockFileName))
 		}
-	default:
-		log.Logger.Errorf("%s error, no block file in dir[%s]", m, path.Join(UPLOAD_TEMP_DIR, taskId))
-		rsp["ErrorCode"], rsp["Data"] = 1, "block file merge error"
-		goto RESPONSE
+		if blockContent, err = ioutil.ReadAll(blockFile); err != nil {
+			log.Logger.Errorf("read block file[%s] to final file error: %v", blockFileName, err)
+			return errors.New(fmt.Sprintf("read block file[%s] error", blockFileName))
+		}
+		blockFile.Close()
+		if _, err = finalFile.Write(blockContent); err != nil {
+			log.Logger.Errorf("write block file[%s] to final file error: %v", blockFileName, err)
+			return errors.New(fmt.Sprintf("wtite block file[%s] to final file error", blockFileName))
+		}
+		if err = os.Remove(blockFileName); err != nil {
+			log.Logger.Errorf("remove block file[%s] error: %v", blockFileName, err)
+			return errors.New(fmt.Sprintf("remove block file[%s] error", blockFileName))
+		}
 	}
 
-RESPONSE:
-	ctx.JSON(http.StatusOK, rsp)
+	return nil
 }
 
 func createDir(dir string) (err error) {
@@ -154,7 +163,7 @@ func createDir(dir string) (err error) {
 	if err = removeDir(dir); err != nil {
 		return
 	}
-	if err = os.Mkdir(dir, os.ModePerm); err != nil {
+	if err = os.MkdirAll(dir, os.ModePerm); err != nil {
 		log.Logger.Errorf("%s error, mkdir %s error: %v", m, dir, err)
 		return
 	}
@@ -172,11 +181,11 @@ func removeDir(dir string) (err error) {
 			removeDirErr = os.Remove(dir)
 		}
 	} else {
-		removeDirErr = os.Remove(dir)
+		removeDirErr = os.RemoveAll(dir)
 	}
 
 	if removeDirErr != nil {
-		log.Logger.Errorf("%s error, remove old file[%s] in %s error: %v", m, dir, UPLOAD_TEMP_DIR, removeDirErr)
+		log.Logger.Errorf("%s error, remove old file[%s] in %s error: %v", m, dir, UploadTempDir, removeDirErr)
 		return removeDirErr
 	}
 	return nil
@@ -184,7 +193,9 @@ func removeDir(dir string) (err error) {
 
 func storageFileTo(fileName string) (err error) {
 	// TODO storage file to distributed storage system
+	fmt.Printf("storage file[%s] to ... ....\n", fileName)
 
-	err = removeDir(fileName)
+	// TODO remove temp dir
 	return
 }
+

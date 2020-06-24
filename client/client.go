@@ -10,9 +10,9 @@ import (
 	"github.com/shirou/gopsutil/host"
 	"github.com/shirou/gopsutil/mem"
 	"os"
+	"os/signal"
 	"runtime"
 	"strconv"
-	"sync"
 	"time"
 )
 
@@ -171,13 +171,9 @@ func main() {
 		Logger.Sync()
 	}()
 
-	wg := sync.WaitGroup{}
-	wg.Add(1)
-
 	HostInfo = new(Host)
 
 	go func() {
-		defer wg.Done()
 		for {
 			hostRegister()
 			time.Sleep(time.Second * 3)
@@ -185,9 +181,11 @@ func main() {
 	}()
 
 	go func() {
-		defer wg.Done()
 		RunRpcServer()
 	}()
 
-	wg.Wait()
+	c := make(chan os.Signal)
+	signal.Notify(c, os.Interrupt, os.Kill)
+	s := <-c
+	fmt.Println(s)
 }

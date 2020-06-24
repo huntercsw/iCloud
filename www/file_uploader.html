@@ -240,17 +240,17 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
 				<div id="uploader" class="wu-example">
-    <!--用来存放文件信息-->
-    <div id="thelist" class="uploader-list"></div>
-    <div class="btns">
-        <div id="picker">选择文件</div>
-        <button id="ctlBtn" class="btn btn-default">开始上传</button>
-    </div>
-	
-    <div class="progress">         <!-- 进度条 -->
-            <div class="progress-bar progress-bar-striped active" role="progressbar" style="width:0%;"></div>
-        </div>
-</div>
+					<!--用来存放文件信息-->
+					<div id="thelist" class="uploader-list"></div>
+					<div class="btns">
+						<div id="picker">选择文件</div>
+						<button id="ctlBtn" class="btn btn-default">开始上传</button>
+					</div>
+					
+					<div class="progress">         <!-- 进度条 -->
+							<div class="progress-bar progress-bar-striped active" role="progressbar" style="width:0%;"></div>
+						</div>
+				</div>
                 <!-- row -->
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -341,9 +341,20 @@
 			// 当有文件被添加进队列的时候
 			uploader.on( 'fileQueued', function( file ) {
 				$list.append( '<div id="' + file.id + '" class="item">' +
-					'<h4 class="info">' + file.name + '</h4>' +
+					'<h4 class="info">' + file.name + '&nbsp&nbsp<a class="remove-this" href="javascript:void(0)"><i class="fas fa-window-close" style="color:#6610f2"></i></a></h4>' +
 					'<p class="state">等待上传...</p>' +
 				'</div>' );
+			})
+			
+			$('#thelist').on('click', '.remove-this', function() {
+				var fileItem = $(this).parent().parent();
+				var id = $(fileItem).attr("id");
+				
+				uploader.removeFile(id, true);
+				
+				$(fileItem).fadeOut(function() {
+					$(fileItem).remove();
+				});
 			})
 			
 			$btn.on( 'click', function() {
@@ -378,22 +389,6 @@
 					alert("ErrorCode: " + response.ErrorCode +";  ErrorMessage: " + response.Data )
 				} else {
 					console.log(file)
-					$.ajax({
-						url: "/iCloudApi/file/upload/webUploader/merge",
-						type: "post",
-						async:false,
-						dataType: "json",
-						data:JSON.stringify({"fileName": file.id, "task_id": task_id}),
-						success: function(res){
-							switch (res.ErrorCode) {
-								case 0:
-									break;
-								default:
-									alert("ErrorCode: " + res.ErrorCode + "; ErrorMessage: " + res.Data)
-									break;
-							}
-						}
-					})
 				}
 				$( '#'+file.id ).find('p.state').text('上传成功');
 			});
