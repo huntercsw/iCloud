@@ -192,3 +192,4 @@ Try `iptables -h' or 'iptables --help' for more information.
 2020-06-22T11:22:43.630+0800	ERROR	apps/webUploader.go:77	storage no chunked file D:/go_project/iCloud/uploadTemp/下载.jpg--wu_1ebd0p4coivpkvc1naifr316tg0/下载.jpg error: open D:/go_project/iCloud/uploadTemp/下载.jpg--wu_1ebd0p4coivpkvc1naifr316tg0/下载.jpg: The system cannot find the path specified.
 2020-06-22T11:25:30.118+0800	INFO	server/main.go:45	iCloud server closed
 2020-06-22T11:25:36.898+0800	INFO	server/main.go:41	iCloud server started
+2020-07-02T09:13:48.884+0800	INFO	server/main.go:45	iCloud server closed
